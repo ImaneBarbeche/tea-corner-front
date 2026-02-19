@@ -1,12 +1,17 @@
-App {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 300px;
-  margin: 20px auto;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    
+  --color-mustard-yellow: #fbed2b;
 }
- 
-input {
-  padding: 10px;
-  font-size: 16px;
+
+html,
+body {
+  @apply bg-white dark:bg-gray-950;
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
 }
