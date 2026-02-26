@@ -2,7 +2,6 @@ import waveImage from "../assets/images/homepage-waves.webp";
 
 export function Welcome() {
   return (
-    <main className="flex items-center justify-center pt-16 pb-4">
       <section className="flex flex-col bg-white px-9 py-8 gap-14 shadow-xl rounded-4xl md:rounded-none md:flex-row-reverse md:py-0 md:shadow-none md:bg-transparent">
         <picture className="w-full max-w-100 mx-auto md:basis-2/3 md:max-w-none">
           <img
@@ -25,6 +24,5 @@ export function Welcome() {
           <button className="md:ml-auto">Get Started</button>
         </div>
       </section>
-    </main>
   );
 }
