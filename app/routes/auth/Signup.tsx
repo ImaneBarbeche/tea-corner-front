@@ -8,8 +8,15 @@ import {
 import type { ActionFunctionArgs } from "react-router";
 
 export async function clientAction({ request }: ActionFunctionArgs) {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData); // Converts form fields to your JSON object
+  let formData = await request.formData();
+
+  const data = Object.fromEntries(formData); // turn form values into an object
+
+  if (data.password !== data.confirm_password) {
+    return { error: "Passwords do not match." };
+  }
+
+  delete data.confirm_password;
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -23,8 +30,14 @@ export async function clientAction({ request }: ActionFunctionArgs) {
     // Handle 400 or 500 errors from backend
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
+
+      // Handle both single errors and arrays of errors
+      const errorMessage = Array.isArray(errorData.message)
+        ? errorData.message.join(", ")
+        : errorData.message || "Something went wrong on the server.";
+
       return {
-        error: errorData.message || "Something went wrong on the server.",
+        error: errorMessage,
       };
     }
 
@@ -57,11 +70,23 @@ export default function Signup() {
         </label>
         <label>
           <span>Password</span>
-          <input name="password" type="password" required className="border" />
+          <input
+            name="password"
+            type="password"
+            required
+            minLength={8}
+            className="border"
+          />
         </label>
-        <label htmlFor="" className="flex flex-col">
+        <label className="flex flex-col">
           <span>Confirm Password</span>
-          <input type="password" />
+          <input
+            name="confirm_password"
+            type="password"
+            required
+            minLength={8}
+            className="border"
+          />
         </label>
 
         {actionData?.error && <p>{actionData.error}</p>}
