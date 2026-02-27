@@ -27,21 +27,24 @@ export async function clientAction({ request }: ActionFunctionArgs) {
       body: JSON.stringify(data),
     });
 
+    const resData = await response.json().catch(() => ({}));
     // Handle 400 or 500 errors from backend
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-
       // Handle both single errors and arrays of errors
-      const errorMessage = Array.isArray(errorData.message)
-        ? errorData.message.join(", ")
-        : errorData.message || "Something went wrong on the server.";
+      const errorMessage = Array.isArray(resData.message)
+        ? resData.message.join(", ")
+        : resData.message || "Something went wrong on the server.";
 
       return {
         error: errorMessage,
       };
     }
+    const successMessage = resData.message;
 
-    return redirect("/signin");
+    // redirecting to the signin page
+    return redirect(`/signin?message=${encodeURIComponent(successMessage)}`);
+
+    // return redirect("/signin");
   } catch (err) {
     // Handle network failures (server is down)
     return { error: "Network error." };
