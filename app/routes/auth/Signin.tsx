@@ -45,7 +45,7 @@ export default function Signin() {
       <Form method="post" className="flex flex-col">
         <label>
           <span>Username</span>
-          <input name="username" type="username" required className="border" />
+          <input name="user_name" type="text" required className="border" />
         </label>
         <label>
           <span>Password</span>
