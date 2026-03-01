@@ -59,9 +59,9 @@ export default function Signup() {
           <span>Password</span>
           <input name="password" type="password" required className="border" />
         </label>
-        <label htmlFor="" className="flex flex-col">
+        <label htmlFor="" className="flex flex-row">
           <span>Confirm Password</span>
-          <input type="password" />
+          <input type="password" required className="border" />
         </label>
 
         {actionData?.error && <p>{actionData.error}</p>}

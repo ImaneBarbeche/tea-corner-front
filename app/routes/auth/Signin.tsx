@@ -43,8 +43,8 @@ export default function Signin() {
     <div>
       <Form method="post" className="flex flex-col">
         <label>
-          <span>Email</span>
-          <input name="email" type="email" required className="border" />
+          <span>Username</span>
+          <input name="username" type="username" required className="border" />
         </label>
         <label>
           <span>Password</span>
