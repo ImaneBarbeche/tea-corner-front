@@ -6,6 +6,7 @@ import {
   NavLink,
 } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
+import { getCsrfToken } from "~/lib/csrf";
 
 export async function clientAction({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
@@ -16,7 +17,7 @@ export async function clientAction({ request }: ActionFunctionArgs) {
   try {
     const response = await fetch(`${apiUrl}/auth/signin`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "X-CSRF-Token": getCsrfToken() ?? "" },
       body: JSON.stringify(data),
       credentials: "include",
     });
