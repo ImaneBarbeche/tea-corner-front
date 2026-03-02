@@ -1,6 +1,6 @@
-import type { Key } from "react";
 import type { Route } from "./+types/Home";
 import { CONFIG } from "../../config";
+import { Button } from "~/components/Button";
 
 export async function clientLoader() {
   const token = localStorage.getItem(CONFIG.TOKEN_KEY);
@@ -40,6 +40,10 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           <p>
             <strong>{tea.name}</strong> ({tea.type})
           </p>
+          <Button>add to library</Button>
+          <Button variant="secondary" size="medium" disabled>
+            add to library
+          </Button>
         </li>
       ))}
     </ul>
