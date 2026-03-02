@@ -7,6 +7,7 @@ import {
 } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
 import { getCsrfToken } from "~/lib/csrf";
+import { CONFIG } from "../../config";
 
 export async function clientAction({ request }: ActionFunctionArgs) {
   let formData = await request.formData();
@@ -19,10 +20,8 @@ export async function clientAction({ request }: ActionFunctionArgs) {
 
   delete data.confirm_password;
 
-  const apiUrl = import.meta.env.VITE_API_URL;
-
   try {
-    const response = await fetch(`${apiUrl}/auth/signup`, {
+    const response = await fetch(`${CONFIG.API_URL}/auth/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

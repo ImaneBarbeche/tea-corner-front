@@ -7,15 +7,14 @@ import {
 } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
 import { getCsrfToken } from "~/lib/csrf";
+import { CONFIG } from "../../config";
 
 export async function clientAction({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  const apiUrl = import.meta.env.VITE_API_URL;
-
   try {
-    const response = await fetch(`${apiUrl}/auth/signin`, {
+    const response = await fetch(`${CONFIG.API_URL}/auth/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,6 +29,12 @@ export async function clientAction({ request }: ActionFunctionArgs) {
       return {
         error: errorData.message || "Something went wrong on the server.",
       };
+    }
+
+    const { access_token } = await response.json();
+
+    if (access_token) {
+      localStorage.setItem(CONFIG.TOKEN_KEY, access_token);
     }
 
     return redirect("/app/");
