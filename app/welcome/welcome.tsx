@@ -27,7 +27,7 @@ export function Welcome() {
             consequatur nesciunt earum consequuntur nulla accusamus velit.
           </p>
         </div>
-        <Link to="/signin" className="md:ml-auto">Get Started</Link>
+        <Link to="/signup" className="md:ml-auto">Get Started</Link>
       </div>
     </section>
   );
