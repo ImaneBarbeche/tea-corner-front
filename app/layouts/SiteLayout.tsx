@@ -10,6 +10,9 @@ export default function SiteLayout() {
           {/* <NavLink to="/" ml-auto>
             Home
           </NavLink> */}
+          <NavLink to="/app/" className="ml-auto">
+            app home
+          </NavLink>
           <NavLink to="/signup" className="ml-auto">
             sign up
           </NavLink>
