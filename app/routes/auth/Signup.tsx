@@ -19,6 +19,7 @@ export async function clientAction({ request }: ActionFunctionArgs) {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-CSRF-Token": getCsrfToken() ?? "" },
       body: JSON.stringify(data),
+      credentials: "include",
     });
 
     // Handle 400 or 500 errors from backend
