@@ -17,7 +17,10 @@ export async function clientAction({ request }: ActionFunctionArgs) {
   try {
     const response = await fetch(`${apiUrl}/auth/signin`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "X-CSRF-Token": getCsrfToken() ?? "" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": getCsrfToken() ?? "",
+      },
       body: JSON.stringify(data),
       credentials: "include",
     });
@@ -29,7 +32,7 @@ export async function clientAction({ request }: ActionFunctionArgs) {
       };
     }
 
-    return redirect("/");
+    return redirect("/app/");
   } catch (err) {
     return { error: "Network error." };
   }
