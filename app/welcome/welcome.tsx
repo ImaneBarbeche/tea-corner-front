@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import waveImage from "../assets/images/homepage-waves.webp";
 
 export function Welcome() {
@@ -26,7 +27,7 @@ export function Welcome() {
             consequatur nesciunt earum consequuntur nulla accusamus velit.
           </p>
         </div>
-        <button className="md:ml-auto">Get Started</button>
+        <Link to="/signup" className="md:ml-auto">Get Started</Link>
       </div>
     </section>
   );

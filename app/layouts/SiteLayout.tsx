@@ -1,4 +1,4 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink } from "react-router";
 
 export default function SiteLayout() {
   return (
@@ -13,8 +13,8 @@ export default function SiteLayout() {
           <NavLink to="/app/" className="ml-auto">
             app home
           </NavLink>
-          <NavLink to="/signup" className="ml-auto">
-            sign up
+          <NavLink to="/signin" className="ml-auto">
+            sign in
           </NavLink>
         </nav>
       </header>

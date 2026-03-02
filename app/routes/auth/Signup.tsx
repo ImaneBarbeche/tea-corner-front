@@ -6,6 +6,7 @@ import {
   NavLink,
 } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
+import { getCsrfToken } from "~/lib/csrf";
 
 export async function clientAction({ request }: ActionFunctionArgs) {
   let formData = await request.formData();
@@ -23,8 +24,12 @@ export async function clientAction({ request }: ActionFunctionArgs) {
   try {
     const response = await fetch(`${apiUrl}/auth/signup`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": getCsrfToken() ?? "",
+      },
       body: JSON.stringify(data),
+      credentials: "include",
     });
 
     const resData = await response.json().catch(() => ({}));
@@ -81,13 +86,12 @@ export default function Signup() {
             className="border"
           />
         </label>
-        <label className="flex flex-col">
+        <label htmlFor="" className="flex flex-row">
           <span>Confirm Password</span>
           <input
-            name="confirm_password"
             type="password"
+            name="confirm_password"
             required
-            minLength={8}
             className="border"
           />
         </label>
