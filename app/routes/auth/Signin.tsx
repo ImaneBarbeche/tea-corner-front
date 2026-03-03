@@ -33,9 +33,9 @@ export async function clientAction({ request }: ActionFunctionArgs) {
 
     const { access_token } = await response.json();
 
-    if (access_token) {
-      localStorage.setItem(CONFIG.TOKEN_KEY, access_token);
-    }
+    // if (access_token) {
+    //   localStorage.setItem(CONFIG.TOKEN_KEY, access_token);
+    // }
 
     return redirect("/app/");
   } catch (err) {

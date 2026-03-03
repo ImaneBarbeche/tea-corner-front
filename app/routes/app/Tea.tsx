@@ -2,12 +2,9 @@ import type { Route } from "./+types/Tea";
 import { CONFIG } from "../../config";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
-  const token = localStorage.getItem(CONFIG.TOKEN_KEY);
-
   try {
     const res = await fetch(`${CONFIG.API_URL}/tea/${params.teaId}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
         "Content-type": "application/json",
       },
       credentials: "include",
