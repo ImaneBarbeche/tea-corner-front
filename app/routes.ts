@@ -13,6 +13,7 @@ export default [
 
   route("app", "layouts/AppLayout.tsx", [
     index("routes/app/Home.tsx"),
+    route("tea/:teaId", "routes/app/Tea.tsx"),
     // route("settings", "routes/app/Settings.tsx"),
   ]),
 ] satisfies RouteConfig;
