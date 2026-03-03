@@ -40,7 +40,6 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
 // }
 
 export default function Tea({ loaderData }: Route.ComponentProps) {
-  // if (!loaderData) return <div>Loading...</div>;
   if (loaderData.error) {
     return <p>Error: {loaderData.error}</p>;
   }
@@ -55,12 +54,4 @@ export default function Tea({ loaderData }: Route.ComponentProps) {
       <strong>{tea.name}</strong> ({tea.type})
     </p>
   );
-
-  // const { name, description } = loaderData.tea;
-  // return (
-  //   <div>
-  //     <h1>{name}</h1>
-  //     <p>{description}</p>
-  //   </div>
-  // );
 }

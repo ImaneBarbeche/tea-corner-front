@@ -42,6 +42,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             <strong>{tea.name}</strong> ({tea.type})
           </p>
           {/* <Button>view tea</Button> */}
+          {/* <Button variant="secondary">view tea</Button> */}
           <NavLink to={`/app/tea/${tea.id}`}>view tea</NavLink>
         </li>
       ))}
