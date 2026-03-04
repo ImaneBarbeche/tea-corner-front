@@ -10,6 +10,7 @@ export default [
 
   route("signup", "routes/auth/Signup.tsx"),
   route("signin", "routes/auth/Signin.tsx"),
+  route("verify-email", "routes/auth/EmailVerify.tsx"),
 
   route("app", "layouts/AppLayout.tsx", [
     index("routes/app/Home.tsx"),

@@ -15,7 +15,6 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     if (!res.ok) {
       const message = res.status === 404 ? "Tea not found" : "Unauthorized";
       return { error: message };
-      // return { tea: null, error: message };
     }
 
     const data = await res.json();
@@ -25,16 +24,9 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
       error: null,
     };
   } catch (err) {
-    // always return both properties so loaderData is predictable
     return { tea: null, error: "Network error." };
   }
 }
-
-// clientLoader.hydrate = true as const; // `as const` for type inference
-
-// export function HydrateFallback() {
-//   return <div>Loading...</div>;
-// }
 
 export default function Tea({ loaderData }: Route.ComponentProps) {
   if (loaderData.error) {
