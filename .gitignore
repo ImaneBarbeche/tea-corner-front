@@ -2,6 +2,9 @@
 .env
 /node_modules/
 
+# Vercel
+/.vercel/
+
 # React Router
 /.react-router/
 /build/
