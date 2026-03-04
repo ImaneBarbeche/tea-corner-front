@@ -10,8 +10,6 @@ export default function SignUp() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  const navigate = useNavigate();
-
   const handleSubmit = async (e: React.FormEvent) => {
     // prevents reloading
     e.preventDefault();
