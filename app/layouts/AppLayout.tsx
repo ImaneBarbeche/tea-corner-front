@@ -1,6 +1,13 @@
-import { Outlet } from "react-router";
+import { Outlet, redirect } from "react-router";
+import { refreshAccessToken } from "~/lib/api";
+
+export async function clientLoader() {
+  const ok = await refreshAccessToken(); // tente un refresh au load
+  if (!ok) throw redirect("/signin");
+}
 
 export default function AppLayout() {
+  
   return (
     <>
       <nav>

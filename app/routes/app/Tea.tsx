@@ -1,9 +1,10 @@
 import type { Route } from "./+types/Tea";
 import { CONFIG } from "../../config";
+import { apiFetch } from "~/lib/api";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   try {
-    const res = await fetch(`${CONFIG.API_URL}/tea/${params.teaId}`, {
+    const res = await apiFetch(`${CONFIG.API_URL}/tea/${params.teaId}`, {
       headers: {
         "Content-type": "application/json",
       },
