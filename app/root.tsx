@@ -38,8 +38,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="min-h-screen grid grid-rows-[min-content_1fr_min-content]">
+      <body className="min-h-screen">
+        <div className="min-h-screen grid grid-rows-[auto_1fr_auto]">
           {children}
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>

@@ -18,7 +18,7 @@ export default function SiteLayout() {
           </NavLink>
         </nav>
       </header>
-      <main className="flex items-center justify-center pt-16 pb-4 max-w-7xl mx-auto">
+      <main className="flex items-centerNOT pt-16 pb-4 max-w-7xl mx-auto">
         <Outlet />
       </main>
       <footer className="flex flex-col gap-8 max-w-7xl mx-auto px-8 border-2 border-rose-300 mt-auto w-full md:flex-row md:gap-0 md:justify-between">

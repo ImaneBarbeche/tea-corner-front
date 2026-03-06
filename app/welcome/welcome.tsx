@@ -3,7 +3,7 @@ import waveImage from "../assets/images/homepage-waves.webp";
 
 export function Welcome() {
   return (
-    <section className="flex flex-col bg-white px-8 py-8 gap-14 shadow-xl rounded-4xl md:rounded-none md:flex-row-reverse md:py-0 md:shadow-none md:bg-transparent">
+    <section className="flex flex-col bg-white px-8 py-8 gap-14 shadow-xl rounded-4xl md:rounded-none md:flex-row-reverse md:py-0 md:shadow-none md:bg-transparent md:h-fit">
       <picture className="w-full max-w-100 mx-auto md:basis-2/3 md:max-w-none">
         <img
           className="w-full max-h-80 h-[30vh] object-cover rounded-br-[10rem] rounded-tl-[10rem] md:rounded-t-full md:rounded-b-none md:aspect-2/1 md:max-h-none md:h-full"
@@ -27,7 +27,9 @@ export function Welcome() {
             consequatur nesciunt earum consequuntur nulla accusamus velit.
           </p>
         </div>
-        <Link to="/signup" className="md:ml-auto">Get Started</Link>
+        <Link to="/signup" className="md:ml-auto">
+          Get Started
+        </Link>
       </div>
     </section>
   );
