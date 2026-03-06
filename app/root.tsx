@@ -38,7 +38,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="min-h-screen">
+      <body className="min-h-screen py-8">
         <div className="min-h-screen grid grid-rows-[auto_1fr_auto]">
           {children}
         </div>

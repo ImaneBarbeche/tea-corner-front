@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import waveImage from "../assets/images/homepage-waves.webp";
+import { Button } from "~/components/Button";
 
 export function Welcome() {
   return (
@@ -14,7 +15,7 @@ export function Welcome() {
       </picture>
       <div className="flex flex-col items-center md:basis-1/3">
         <div className="mb-14">
-          <h1 className="text-2xl text-center md:text-left">
+          <h1 className="text-center text-4xl md:text-left">
             Upgrading your tea experience
           </h1>
           <p className="mt-6 md:text-justify">
@@ -27,9 +28,11 @@ export function Welcome() {
             consequatur nesciunt earum consequuntur nulla accusamus velit.
           </p>
         </div>
-        <Link to="/signup" className="md:ml-auto">
+        <Button className="md:ml-auto">
+        <Link to="/signup">
           Get Started
         </Link>
+        </Button>
       </div>
     </section>
   );
