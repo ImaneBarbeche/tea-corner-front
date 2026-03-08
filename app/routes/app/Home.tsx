@@ -38,11 +38,15 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     return <p>Error: {loaderData.error}</p>;
   }
   return (
-    <>
-      {loaderData.teas?.map((tea: Tea) => (
-        // <article key={tea.id}></article>
-        <TeaCard tea={tea} key={tea.id} />
-      ))}
-    </>
+    <section className="w-full">
+      <header>
+        <h2>Tea</h2>
+      </header>
+      <div className="flex gap-4 flex-wrap justify-betweenNOT md:gap-8">
+        {loaderData.teas?.map((tea: Tea) => (
+          <TeaCard tea={tea} key={tea.id} />
+        ))}
+      </div>
+    </section>
   );
 }

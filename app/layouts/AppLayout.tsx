@@ -11,10 +11,10 @@ export default function AppLayout() {
     <>
       <nav>
         <ul>
-          <li>test</li>
+          <li>nav</li>
         </ul>
       </nav>
-      <main className="flex flex-col items-center justify-center pt-16 pb-4 max-w-7xl mx-auto">
+      <main className="flex flex-col items-center justify-center w-full h-full pt-16NOT px-2 pb-4NOT max-w-7xl mx-auto md:px-6">
         <Outlet />
       </main>
     </>
