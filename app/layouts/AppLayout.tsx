@@ -7,7 +7,6 @@ export async function clientLoader() {
 }
 
 export default function AppLayout() {
-  
   return (
     <>
       <nav>
@@ -15,7 +14,7 @@ export default function AppLayout() {
           <li>test</li>
         </ul>
       </nav>
-      <main className="flex items-center justify-center pt-16 pb-4 max-w-7xl mx-auto">
+      <main className="flex flex-col items-center justify-center pt-16 pb-4 max-w-7xl mx-auto">
         <Outlet />
       </main>
     </>

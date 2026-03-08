@@ -8,6 +8,8 @@ import {
 import type { ActionFunctionArgs } from "react-router";
 import { getCsrfToken } from "~/lib/csrf";
 import { CONFIG } from "../../config";
+import { Button } from "~/components/Button";
+import { Input } from "~/components/Input";
 
 export async function clientAction({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
@@ -53,7 +55,7 @@ export default function Signin() {
       <Form method="post" className="flex flex-col">
         <label>
           <span>Username</span>
-          <input name="user_name" type="text" required className="border" />
+          <Input name="user_name" type="text" required className="border" />
         </label>
         <label>
           <span>Password</span>
@@ -61,9 +63,12 @@ export default function Signin() {
         </label>
 
         {actionData?.error && <p>{actionData.error}</p>}
-        <button type="submit" disabled={isSubmitting}>
+        {/* <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "signing in..." : "sign in"}
-        </button>
+        </button> */}
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "signing in..." : "sign in"}
+        </Button>
       </Form>
       <p>
         Don't have an account? <NavLink to="/signup">Sign up</NavLink>
