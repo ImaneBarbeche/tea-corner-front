@@ -1,6 +1,9 @@
 import type { Route } from "./+types/Tea";
 import { CONFIG } from "../../config";
 import { apiFetch } from "~/lib/api";
+import { TeaHeader } from "~/components/TeaHeader";
+import { TEA_TYPE_COLORS } from "./enums/teaType.enum";
+import type { Tea } from "~/types/tea";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   try {
@@ -22,7 +25,7 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     console.log(data);
 
     return {
-      tea: data ? data : {},
+      tea: data ? (data as Tea) : ({} as Tea),
       error: null,
     };
   } catch (err) {
@@ -40,9 +43,15 @@ export default function Tea({ loaderData }: Route.ComponentProps) {
     return <p>Tea not available.</p>;
   }
 
+  const color =
+    tea.custom_color || tea.style?.color || TEA_TYPE_COLORS[tea.type];
+
   return (
-    <p>
-      <strong>{tea.name}</strong> ({tea.type})
-    </p>
+    // <p>
+    //   <strong>{tea.name}</strong> ({tea.type})
+    // </p>
+    <section style={{ "--tea-color": color } as React.CSSProperties}>
+      <TeaHeader tea={tea} />
+    </section>
   );
 }
