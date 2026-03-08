@@ -1,5 +1,6 @@
 import type { TeaType } from "~/routes/app/enums/teaType.enum";
 import type { caffeineLevel } from "~/routes/app/enums/caffeineLevel.enum";
+import type { TeaStyle } from "./tea-style";
 
 export interface Tea {
   id: string;
@@ -7,7 +8,7 @@ export interface Tea {
   //   ingredients: TeaIngredient[];
   name: string;
   type: TeaType;
-  style: { id: string; name: string } | null;
+  style: TeaStyle | null;
   description: string | null;
   custom_color: string | null;
   custom_brew_color: string | null;
