@@ -74,9 +74,7 @@ export default function Signup() {
       </picture>
       <section className="flex flex-col bg-white gap-4 px-11 py-8 shadow-xl rounded-4xl md:flex-1 md:items-center md:justify-center md:py-2.5 md:px-2.5 md:shadow-none">
         <Form method="post" className="flex flex-col gap-4">
-          <h1 className="text-center text-4xl">
-            Create an account
-          </h1>
+          <h1 className="text-center text-4xl">Create an account</h1>
           <span className="text-center">sign up and start brewing</span>
           <label className="flex flex-col gap-1">
             <span>Display name</span>
@@ -132,10 +130,9 @@ export default function Signup() {
             </label>
           </div>
           <label className="flex items-center gap-2 text-center md:text-left">
-            <input type="checkbox" name="agree_terms" required />
-            <NavLink to="" className="underline">
-              I agree to the Privacy Policy and Terms of Service
-            </NavLink>
+            <input type="checkbox" name="agree_terms" required />I agree to the{" "}
+            <a href="/privacy" className="underline">Privacy Policy</a> and{" "}
+            <a href="/terms" className="underline">Terms of Service</a>
           </label>
           {actionData?.error && <p>{actionData.error}</p>}
           <div className="flex flex-col items-center py-5">
