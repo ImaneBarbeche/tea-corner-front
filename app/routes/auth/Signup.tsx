@@ -22,6 +22,13 @@ export async function clientAction({ request }: ActionFunctionArgs) {
 
   delete data.confirm_password;
 
+  if (data.agree_terms === "on") {
+    const now = new Date().toISOString();
+    data.terms_accepted_at = now;
+    data.privacy_accepted_at = now;
+  }
+  delete data.agree_terms;
+
   try {
     const response = await fetch(`${CONFIG.API_URL}/auth/signup`, {
       method: "POST",
