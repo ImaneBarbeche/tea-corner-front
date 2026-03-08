@@ -19,6 +19,7 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     }
 
     const data = await res.json();
+    console.log(data);
 
     return {
       tea: data ? data : {},

@@ -2,6 +2,8 @@ import type { Route } from "./+types/Home";
 import { CONFIG } from "../../config";
 import { Button } from "~/components/Button";
 import { NavLink } from "react-router";
+import type { Tea } from "~/types/tea";
+import { TeaCard } from "~/components/TeaCard";
 
 export async function clientLoader() {
   // const token = localStorage.getItem(CONFIG.TOKEN_KEY);
@@ -20,9 +22,10 @@ export async function clientLoader() {
     }
 
     const data = await res.json();
+    console.log(data);
 
     return {
-      teas: data ? data : [],
+      teas: data ? (data as Tea[]) : [],
       error: null,
     };
   } catch (err) {
@@ -35,17 +38,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     return <p>Error: {loaderData.error}</p>;
   }
   return (
-    <ul>
-      {loaderData.teas?.map((tea: any) => (
-        <li key={tea.id}>
-          <p>
-            <strong>{tea.name}</strong> ({tea.type})
-          </p>
-          {/* <Button>view tea</Button> */}
-          {/* <Button variant="secondary">view tea</Button> */}
-          <NavLink to={`/app/tea/${tea.id}`}>view tea</NavLink>
-        </li>
+    <>
+      {loaderData.teas?.map((tea: Tea) => (
+        // <article key={tea.id}></article>
+        <TeaCard tea={tea} key={tea.id} />
       ))}
-    </ul>
+    </>
   );
 }
