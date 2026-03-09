@@ -27,6 +27,8 @@
 
   --color-primary-dark: #333333;
   --color-primary-light: white;
+  --color-secondary-beige: #FAF1EB40;
+  --shadow-card: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 html,

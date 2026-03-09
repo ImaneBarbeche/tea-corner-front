@@ -39,7 +39,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="min-h-screen py-8">
-        <div className="min-h-screen grid grid-rows-[auto_1fr_auto]">
+        <div className="min-h-screen grid grid-rows-[auto_1fr_auto] relative">
           {children}
         </div>
         <ScrollRestoration />
