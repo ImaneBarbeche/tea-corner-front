@@ -8,7 +8,6 @@ export async function clientLoader() {
 }
 
 export default function AppLayout() {
-  
   return (
     <>
       <AppNav />
