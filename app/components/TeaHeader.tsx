@@ -1,6 +1,8 @@
 import type { Tea } from "~/types/tea";
+// import { phonemize } from "phonemize";
 
 export function TeaHeader({ tea }: { tea: Tea }) {
+  // const phonetic = phonemize(tea.name);
   return (
     <header>
       <h1>
@@ -9,7 +11,7 @@ export function TeaHeader({ tea }: { tea: Tea }) {
         </span>
         <span className="font-sans text-2xl ml-2">tea</span>
       </h1>
-      <p className="phonetic">/ˈpɛpəˌmɪnt/</p>
+      {/* <p className="phonetic">{phonetic}</p> */}
     </header>
   );
 }

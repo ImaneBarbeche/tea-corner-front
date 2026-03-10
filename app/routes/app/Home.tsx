@@ -1,7 +1,5 @@
 import type { Route } from "./+types/Home";
 import { CONFIG } from "../../config";
-import { Button } from "~/components/Button";
-import { NavLink } from "react-router";
 import type { Tea } from "~/types/tea";
 import { TeaCard } from "~/components/TeaCard";
 

@@ -47,9 +47,6 @@ export default function Tea({ loaderData }: Route.ComponentProps) {
     tea.custom_color || tea.style?.color || TEA_TYPE_COLORS[tea.type];
 
   return (
-    // <p>
-    //   <strong>{tea.name}</strong> ({tea.type})
-    // </p>
     <section style={{ "--tea-color": color } as React.CSSProperties}>
       <TeaHeader tea={tea} />
     </section>
