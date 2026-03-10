@@ -6,7 +6,6 @@ import {
   NavLink,
 } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
-import { getCsrfToken } from "~/lib/csrf";
 import { CONFIG } from "../../config";
 import waveImage from "~/assets/images/homepage-waves.webp";
 import { Button } from "~/components/Button";
@@ -34,7 +33,6 @@ export async function clientAction({ request }: ActionFunctionArgs) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": getCsrfToken() ?? "",
       },
       body: JSON.stringify(data),
       credentials: "include",
