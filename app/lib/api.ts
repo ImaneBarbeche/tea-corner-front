@@ -1,6 +1,6 @@
 import { redirect } from "react-router";
 import { CONFIG } from "~/config";
-import { getCsrfToken } from "~/lib/csrf";
+// import { getCsrfToken } from "~/lib/csrf";
 
 let accessToken: string | null = null;
 
@@ -14,7 +14,7 @@ export const clearAccessToken = () => {
 export async function refreshAccessToken(): Promise<boolean> {
   const res = await fetch(`${CONFIG.API_URL}/auth/refresh-tokens`, {
     method: "POST",
-    headers: { "X-CSRF-Token": getCsrfToken() ?? "" },
+    // headers: { "X-CSRF-Token": getCsrfToken() ?? "" },
     credentials: "include",
   });
   if (!res.ok) return false;
