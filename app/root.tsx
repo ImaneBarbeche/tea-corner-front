@@ -8,13 +8,7 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import { fetchCsrfToken } from "./lib/csrf";
 import "./app.css";
-
-export async function clientLoader(_: Route.ClientLoaderArgs) {
-  await fetchCsrfToken();
-  return null;
-}
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -39,7 +33,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="min-h-screen py-8">
-        <div className="min-h-screen grid grid-rows-[auto_1fr_auto]">
+        <div className="min-h-screen grid grid-rows-[auto_1fr_auto] relative">
           {children}
         </div>
         <ScrollRestoration />

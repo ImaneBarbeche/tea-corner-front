@@ -30,8 +30,8 @@ export default function SiteLayout() {
         </div>
         <div className="text-center md:flex md:gap-8">
           <div className="flex justify-around md:gap-8">
-            <NavLink to="">Privacy Policy</NavLink>
-            <NavLink to="">Terms of Conditions</NavLink>
+            <a href="/privacy" className="underline">Privacy Policy</a>
+           <a href="/terms" className="underline">Terms of Service</a>
           </div>
           <p className="mt-2 md:mt-0">2026 tea corner. All Rights Reserved</p>
         </div>

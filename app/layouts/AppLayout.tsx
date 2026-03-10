@@ -1,4 +1,5 @@
 import { Outlet, redirect } from "react-router";
+import { AppNav } from "~/components/AppNav";
 import { refreshAccessToken } from "~/lib/api";
 
 export async function clientLoader() {
@@ -9,12 +10,8 @@ export async function clientLoader() {
 export default function AppLayout() {
   return (
     <>
-      <nav>
-        <ul>
-          <li>nav</li>
-        </ul>
-      </nav>
-      <main className="flex flex-col items-center justify-center w-full h-full pt-16NOT px-2 pb-4NOT max-w-7xl mx-auto md:px-6">
+      <AppNav />
+      <main className="flex items-center justify-center pt-16 pb-4 max-w-7xl mx-auto">
         <Outlet />
       </main>
     </>
