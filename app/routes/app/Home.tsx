@@ -2,6 +2,9 @@ import type { Route } from "./+types/Home";
 import { CONFIG } from "../../config";
 import type { Tea } from "~/types/tea";
 import { TeaCard } from "~/components/TeaCard";
+import { useState } from "react";
+import { Modal } from "~/components/Modal";
+import { Tag } from "~/components/Tag";
 
 export async function clientLoader() {
   // const token = localStorage.getItem(CONFIG.TOKEN_KEY);
@@ -32,6 +35,8 @@ export async function clientLoader() {
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
   if (loaderData.error) {
     return <p>Error: {loaderData.error}</p>;
   }
