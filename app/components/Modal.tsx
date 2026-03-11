@@ -11,7 +11,7 @@ type ModalProps = {
   children: React.ReactNode;
 };
 
-export function Modal({ open, onClose, title, children }: ModalProps) {
+export function Modal({ open, onClose, title, children, ...props }: ModalProps) {
 
   const ref = useRef<HTMLDialogElement>(null);
 
