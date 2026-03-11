@@ -2,6 +2,8 @@ import type { Route } from "./+types/Home";
 import { CONFIG } from "../../config";
 import { Button } from "~/components/Button";
 import { NavLink } from "react-router";
+import { useState } from "react";
+import { Modal } from "~/components/Modal";
 
 export async function clientLoader() {
   // const token = localStorage.getItem(CONFIG.TOKEN_KEY);
@@ -31,10 +33,22 @@ export async function clientLoader() {
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
   if (loaderData.error) {
     return <p>Error: {loaderData.error}</p>;
   }
   return (
+      <>
+      <button type="button" onClick={() => setIsOpen(true)}>Open</button>
+      <Modal
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="Test modal"
+      >
+        <p>Text</p>
+        <p>Text2</p>
+      </Modal>
     <ul>
       {loaderData.teas?.map((tea: any) => (
         <li key={tea.id}>
@@ -47,5 +61,6 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         </li>
       ))}
     </ul>
+    </>
   );
 }
