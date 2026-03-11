@@ -34,7 +34,7 @@ export function Tag({ content, icon, color, ...props }: TagProps) {
   }
 
   return (
-    <div className="flex bg-primary-beige p-1.5 gap-1.5 rounded-full">
+    <div className="flex bg-primary-beige p-1.5 gap-1.5 rounded-full w-fit">
       <div
         className="flex items-center rounded-full p-1 bg-(--tag-color) min-w-6 aspect-square"
         style={
