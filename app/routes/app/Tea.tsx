@@ -4,6 +4,8 @@ import { apiFetch } from "~/lib/api";
 import { TeaHeader } from "~/components/TeaHeader";
 import { TEA_TYPE_COLORS } from "./enums/teaType.enum";
 import type { Tea } from "~/types/tea";
+import type { Ingredient } from "~/types/ingredient";
+import { Tag } from "~/components/Tag";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   try {
@@ -47,8 +49,29 @@ export default function Tea({ loaderData }: Route.ComponentProps) {
     tea.custom_color || tea.style?.color || TEA_TYPE_COLORS[tea.type];
 
   return (
-    <section style={{ "--tea-color": color } as React.CSSProperties}>
-      <TeaHeader tea={tea} />
+    <section
+      className=""
+      style={{ "--tea-color": color } as React.CSSProperties}
+    >
+      <div className="flex flex-col gap-4">
+        <TeaHeader tea={tea} />
+        {tea.description && (
+          <p className="max-w-80 text-justify">{tea.description}</p>
+        )}
+        {tea.ingredients && (
+          <div>
+            <p>Ingredients</p>
+            {tea.ingredients.map((ingredient: Ingredient) => (
+              <Tag
+                key={ingredient.ingredient.id}
+                content={ingredient.ingredient.name}
+                icon={ingredient.ingredient.type}
+                color={ingredient.ingredient.color}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 }
