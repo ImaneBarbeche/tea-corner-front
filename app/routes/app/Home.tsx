@@ -3,20 +3,10 @@ import { CONFIG } from "../../config";
 import type { Tea } from "~/types/tea";
 import { TeaCard } from "~/components/TeaCard";
 import { useState } from "react";
-import { Modal } from "~/components/Modal";
-import { Tag } from "~/components/Tag";
 
 export async function clientLoader() {
-  // const token = localStorage.getItem(CONFIG.TOKEN_KEY);
-
   try {
-    const res = await fetch(`${CONFIG.API_URL}/tea/system`, {
-      // headers: {
-      //   Authorization: `Bearer ${token}`,
-      //   "Content-type": "application/json",
-      // },
-      // credentials: "include",
-    });
+    const res = await fetch(`${CONFIG.API_URL}/tea/system`);
 
     if (res.status === 401) {
       return { error: "Unauthorized" };
