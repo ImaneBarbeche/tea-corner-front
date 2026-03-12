@@ -1,11 +1,10 @@
 import type { Tea } from "~/types/tea";
 import { NavLink } from "react-router";
-import { TEA_TYPE_COLORS } from "~/routes/app/enums/teaType.enum";
 import wavePattern from "../assets/images/wave-pattern-old.png";
+import { getTeaColor } from "~/lib/teaFormatters";
 
 export function TeaCard({ tea }: { tea: Tea }) {
-  const color =
-    tea.custom_color || tea.style?.color || TEA_TYPE_COLORS[tea.type];
+  const color = getTeaColor(tea);
 
   const showType = tea.name.toLowerCase() !== tea.type.toLowerCase();
 

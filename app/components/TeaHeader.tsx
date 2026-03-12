@@ -2,7 +2,6 @@ import type { Tea } from "~/types/tea";
 // import { phonemize } from "phonemize";
 
 export function TeaHeader({ tea }: { tea: Tea }) {
-  // const phonetic = phonemize(tea.name);
   const showType = tea.name.toLowerCase() !== tea.type.toLowerCase();
   return (
     <header>
