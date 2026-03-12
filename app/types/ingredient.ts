@@ -6,4 +6,6 @@ export interface Ingredient {
   name: string;
   type: IngredientType;
   color: string;
+  created_at: string;
+  modified_at: string;
 }
