@@ -9,20 +9,15 @@ import {
   Sprout,
   type LucideIcon,
 } from "lucide-react";
+import { INGREDIENT_TYPE_ICONS, type IngredientType } from "~/routes/app/enums/ingredientType.enum";
 
-const iconTag: Record<string, LucideIcon> = {
-  leaf: Leaf,
-  sprout: Sprout,
-  candy: Candy,
-  fruit: Citrus,
-  nut: Nut,
-  spice: PillBottle,
-  none: CircleOff,
+const lucideIcons: Record<string, LucideIcon> = {
+  Leaf, Sprout, Candy, Citrus, Nut, PillBottle, CircleOff,
 };
 
 type TagProps = {
   content: string;
-  icon?: string;
+  icon?: IngredientType;
   color?: string;
 };
 
@@ -30,7 +25,7 @@ export function Tag({ content, icon, color, ...props }: TagProps) {
   let Icon: LucideIcon | null = null;
 
   if (icon) {
-    Icon = iconTag[icon.toLowerCase()];
+    Icon = lucideIcons[INGREDIENT_TYPE_ICONS[icon]];
   }
 
   return (
@@ -47,7 +42,7 @@ export function Tag({ content, icon, color, ...props }: TagProps) {
           <Icon color="var(--color-primary-dark)" strokeWidth={1.5} size={16} opacity={0.5} />
         )}
       </div>
-      <p className="font-display">
+      <p className="font-display lowercase">
         {content}
       </p>
     </div>

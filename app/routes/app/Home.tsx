@@ -2,20 +2,10 @@ import type { Route } from "./+types/Home";
 import { CONFIG } from "../../config";
 import type { Tea } from "~/types/tea";
 import { TeaCard } from "~/components/TeaCard";
-import { useState } from "react";
-import { Modal } from "~/components/Modal";
-import { Tag } from "~/components/Tag";
 
 export async function clientLoader() {
-  // const token = localStorage.getItem(CONFIG.TOKEN_KEY);
-
   try {
     const res = await fetch(`${CONFIG.API_URL}/tea/system`, {
-      // headers: {
-      //   Authorization: `Bearer ${token}`,
-      //   "Content-type": "application/json",
-      // },
-      // credentials: "include",
     });
 
     if (res.status === 401) {
@@ -35,7 +25,6 @@ export async function clientLoader() {
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const [isOpen, setIsOpen] = useState(false);
 
   if (loaderData.error) {
     return <p>Error: {loaderData.error}</p>;
