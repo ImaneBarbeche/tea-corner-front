@@ -11,7 +11,7 @@ export default function AppLayout() {
   return (
     <>
       <AppNav />
-      <main className="flex items-center justify-center pt-16 pb-4 max-w-7xl mx-autoNOT mx-4">
+      <main className="flex items-center justify-center pt-16 pb-4 max-w-7xl mx-4NOT mx-auto px-4 min-h-screenNOT md:pl-[calc(4.8rem+1rem)]">
         <Outlet />
       </main>
     </>

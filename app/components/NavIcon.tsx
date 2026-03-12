@@ -39,7 +39,11 @@ export function NavIcon({ icon, link, text, end, ...props }: NavIconProps) {
           <span
             className={`p-1.5 ${isActive ? "bg-primary-beige rounded-xl" : ""}`}
           >
-            <Icon color="var(--color-primary-dark)" strokeWidth={1} size={36} />
+            <Icon
+              color="var(--color-secondary-dark)"
+              strokeWidth={1}
+              size={36}
+            />
           </span>
           <span className="text-xs mt-3 md:hidden">{text}</span>
         </>
