@@ -26,6 +26,7 @@
   --font-display: "Alice", serif;
 
   --color-primary-dark: #333333;
+  --color-secondary-dark: #535353;
   --color-primary-light: white;
   --color-primary-beige: #faf1eb;
   --color-secondary-beige: #faf1eb90;
@@ -34,7 +35,7 @@
 
 html,
 body {
-  @apply font-sans text-primary-dark;
+  @apply font-sans text-secondary-dark;
 }
 
 h1,

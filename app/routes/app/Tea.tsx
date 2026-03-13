@@ -1,9 +1,16 @@
 import type { Route } from "./+types/Tea";
 import { CONFIG } from "../../config";
 import { apiFetch } from "~/lib/api";
-import { TeaHeader } from "~/components/TeaHeader";
-import { TEA_TYPE_COLORS } from "./enums/teaType.enum";
+import teaCup from "~/assets/images/tea-cup.png";
+
+import {
+  formatBrewTime,
+  formatLeafAmount,
+  getTeaColor,
+} from "~/lib/teaFormatters";
+import { TeaInfoCol } from "~/components/TeaInfoCol";
 import type { Tea } from "~/types/tea";
+import { TeaTimer } from "~/components/TeaTimer";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   try {
@@ -42,13 +49,30 @@ export default function Tea({ loaderData }: Route.ComponentProps) {
   if (!tea) {
     return <p>Tea not available.</p>;
   }
-
-  const color =
-    tea.custom_color || tea.style?.color || TEA_TYPE_COLORS[tea.type];
+  const color = getTeaColor(tea);
 
   return (
-    <section style={{ "--tea-color": color } as React.CSSProperties}>
-      <TeaHeader tea={tea} />
+    <section
+      className="flex flex-col md:flex-row items-center md:items-end md:justify-around w-full"
+      style={{ "--tea-color": color } as React.CSSProperties}
+    >
+      <TeaInfoCol tea={tea} />
+      <div className="mt-8 md:mt-0 flex flex-col items-center gap-4">
+        <div
+          className="relative bg-
+          
+                after:content-['']  
+                after:absolute 
+                after:inset-0 
+                after:bg-[var(--tea-color)] 
+                after:mix-blend-hue 
+                after:pointer-events-none
+                after:z-20"
+        >
+          {/* <img src={teaCup} alt="a tea cup" className="max-w-72" /> */}
+        </div>
+        <TeaTimer seconds={tea.brewing_time} />
+      </div>
     </section>
   );
 }

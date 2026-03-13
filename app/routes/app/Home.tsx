@@ -5,8 +5,7 @@ import { TeaCard } from "~/components/TeaCard";
 
 export async function clientLoader() {
   try {
-    const res = await fetch(`${CONFIG.API_URL}/tea/system`, {
-    });
+    const res = await fetch(`${CONFIG.API_URL}/tea/system`);
 
     if (res.status === 401) {
       return { error: "Unauthorized" };
