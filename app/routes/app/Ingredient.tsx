@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Modal } from "~/components/Modal";
 import { IngredientForm } from "~/components/IngredientForm";
 import { DropdownButton } from "~/components/DropDownButton";
+import { Plus, PlusIcon } from "lucide-react";
 
 export async function clientLoader() {
   try {
@@ -82,11 +83,8 @@ export default function Ingredient({ loaderData }: Route.ComponentProps) {
     <section className="w-full">
       <header>
         <h2>Ingredient</h2>
-        <Button onClick={() => setOpen(true)} variant="secondary">
-          Add ingredient
-        </Button>
       </header>
-      <div className="">
+      <div className="flex justify-between items-center">
         {loaderData.ingredients && loaderData.ingredients.length > 0 ? (
           <ul className="flex gap-4 flex-wrap md:gap-8">
             {loaderData.ingredients.map((ingredient: Ingredient) => (
@@ -97,6 +95,7 @@ export default function Ingredient({ loaderData }: Route.ComponentProps) {
                   color={ingredient.color}
                 >
                   <DropdownButton
+                    className="p-1"
                     items={[
                       {
                         label: "Edit",
@@ -122,6 +121,10 @@ export default function Ingredient({ loaderData }: Route.ComponentProps) {
         ) : (
           <p>No ingredients found.</p>
         )}
+        <Button onClick={() => setOpen(true)} variant="secondary">
+          <PlusIcon size={16} />
+          Add
+        </Button>
       </div>
       <Modal open={open} onClose={() => setOpen(false)} title="New ingredient">
         <IngredientForm onClose={() => setOpen(false)} method="post" />
