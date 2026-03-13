@@ -9,21 +9,6 @@ import {
   useActionData,
   type ActionFunctionArgs,
 } from "react-router";
-import { Input } from "~/components/Input";
-import {
-  IngredientType,
-  INGREDIENT_TYPE_ICONS,
-} from "./enums/ingredientType.enum";
-import {
-  Leaf,
-  Sprout,
-  Candy,
-  Citrus,
-  PillBottle,
-  Nut,
-  CircleOff,
-} from "lucide-react";
-import { PaletteIcon } from "lucide-react";
 import { useState } from "react";
 import { Modal } from "~/components/Modal";
 import { IngredientForm } from "~/components/IngredientForm";
@@ -85,62 +70,6 @@ export async function clientAction({ request }: ActionFunctionArgs) {
       return { error: "Network error." };
     }
   }
-
-  if (intent === "update") {
-    const { intent, id, ...bodyData } = data; // exlude id and intent from return so request does not fail when it reaches backend
-    try {
-      const response = await fetch(`${CONFIG.API_URL}/ingredient/${data.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bodyData),
-        credentials: "include",
-      });
-      const resData = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        // Handle both single errors and arrays of errors
-        const errorMessage = Array.isArray(resData.message)
-          ? resData.message.join(", ")
-          : resData.message || "Something went wrong on the server.";
-        console.log(resData);
-
-        return {
-          error: errorMessage,
-        };
-      }
-      return redirect("/app/ingredient");
-    } catch (err) {
-      // Handle network failures (server is down)
-      return { error: "Network error." };
-    }
-  }
-  try {
-    const response = await fetch(`${CONFIG.API_URL}/ingredient/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-      credentials: "include",
-    });
-    const resData = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      // Handle both single errors and arrays of errors
-      const errorMessage = Array.isArray(resData.message)
-        ? resData.message.join(", ")
-        : resData.message || "Something went wrong on the server.";
-      console.log(resData);
-
-      return {
-        error: errorMessage,
-      };
-    }
-    return redirect("/app/ingredient");
-  } catch (err) {
-    // Handle network failures (server is down)
-    return { error: "Network error." };
-  }
 }
 
 export default function Ingredient({ loaderData }: Route.ComponentProps) {
@@ -166,34 +95,14 @@ export default function Ingredient({ loaderData }: Route.ComponentProps) {
                   icon={ingredient.type}
                   color={ingredient.color}
                 />
-                <Form method="post">
+                <IngredientForm 
+                method="patch"
+                ingredient={ingredient}
+                />
+                <Form method="delete">
                   <input type="hidden" name="id" value={ingredient.id} />
                   <button name="intent" value="delete" type="submit">
                     X
-                  </button>
-                </Form>
-                <Form method="post">
-                  <input type="hidden" name="id" value={ingredient.id} />
-                  <Input name="name" defaultValue={ingredient.name} />
-                  <select
-                    name="type"
-                    defaultValue={ingredient.type}
-                    title="edit_type"
-                  >
-                    {Object.entries(IngredientType).map(([key, value]) => (
-                      <option key={value} value={value}>
-                        {key}
-                      </option>
-                    ))}
-                  </select>
-                  <input
-                    type="color"
-                    name="color"
-                    title="update"
-                    defaultValue={ingredient.color}
-                  />
-                  <button name="intent" value="update" type="submit">
-                    Save
                   </button>
                 </Form>
               </li>
@@ -204,7 +113,7 @@ export default function Ingredient({ loaderData }: Route.ComponentProps) {
         )}
       </div>
       <Modal open={open} onClose={() => setOpen(false)} title="New ingredient">
-        <IngredientForm onClose={() => setOpen(false)} />
+        <IngredientForm onClose={() => setOpen(false)} method="post" />
       </Modal>
     </section>
   );
