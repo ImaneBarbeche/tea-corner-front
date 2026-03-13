@@ -7,7 +7,7 @@ import { redirect, useSubmit, type ActionFunctionArgs } from "react-router";
 import { useState } from "react";
 import { Modal } from "~/components/Modal";
 import { IngredientForm } from "~/components/IngredientForm";
-import { DropdownButton } from "~/components/DropDownButton";
+import { DropDownButton } from "~/components/DropDownButton";
 import { Plus, PlusIcon } from "lucide-react";
 
 export async function clientLoader() {
@@ -94,7 +94,7 @@ export default function Ingredient({ loaderData }: Route.ComponentProps) {
                   icon={ingredient.type}
                   color={ingredient.color}
                 >
-                  <DropdownButton
+                  <DropDownButton
                     className="p-1"
                     items={[
                       {

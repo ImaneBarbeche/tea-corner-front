@@ -16,7 +16,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   items: MenuItemProps[];
 }
 
-export function DropdownButton({
+export function DropDownButton({
   variant = "ghost",
   size = "small",
   icon,
