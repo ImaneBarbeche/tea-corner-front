@@ -3,15 +3,11 @@ import { CONFIG } from "../../config";
 import type { Ingredient } from "~/types/ingredient";
 import { Tag } from "~/components/Tag";
 import { Button } from "~/components/Button";
-import {
-  Form,
-  redirect,
-  useActionData,
-  type ActionFunctionArgs,
-} from "react-router";
+import { redirect, useSubmit, type ActionFunctionArgs } from "react-router";
 import { useState } from "react";
 import { Modal } from "~/components/Modal";
 import { IngredientForm } from "~/components/IngredientForm";
+import { DropdownButton } from "~/components/DropDownButton";
 
 export async function clientLoader() {
   try {
@@ -73,8 +69,11 @@ export async function clientAction({ request }: ActionFunctionArgs) {
 }
 
 export default function Ingredient({ loaderData }: Route.ComponentProps) {
-  const actionData = useActionData();
   const [open, setOpen] = useState(false);
+  const submit = useSubmit();
+  const [editOpen, setEditOpen] = useState(false);
+  const [selectedIngredient, setSelectedIngredient] =
+    useState<Ingredient | null>(null);
 
   if (loaderData.error) {
     return <p>Error: {loaderData.error}</p>;
@@ -83,7 +82,9 @@ export default function Ingredient({ loaderData }: Route.ComponentProps) {
     <section className="w-full">
       <header>
         <h2>Ingredient</h2>
-        <Button onClick={() => setOpen(true)} variant="secondary">Add ingredient</Button>
+        <Button onClick={() => setOpen(true)} variant="secondary">
+          Add ingredient
+        </Button>
       </header>
       <div className="">
         {loaderData.ingredients && loaderData.ingredients.length > 0 ? (
@@ -94,17 +95,27 @@ export default function Ingredient({ loaderData }: Route.ComponentProps) {
                   content={ingredient.name}
                   icon={ingredient.type}
                   color={ingredient.color}
-                />
-                <IngredientForm 
-                method="patch"
-                ingredient={ingredient}
-                />
-                <Form method="delete">
-                  <input type="hidden" name="id" value={ingredient.id} />
-                  <button name="intent" value="delete" type="submit">
-                    X
-                  </button>
-                </Form>
+                >
+                  <DropdownButton
+                    items={[
+                      {
+                        label: "Edit",
+                        onClick: () => {
+                          setSelectedIngredient(ingredient);
+                          setEditOpen(true);
+                        },
+                      },
+                      {
+                        label: "Delete",
+                        onClick: () =>
+                          submit(
+                            { intent: "delete", id: ingredient.id },
+                            { method: "delete" },
+                          ),
+                      },
+                    ]}
+                  />
+                </Tag>
               </li>
             ))}
           </ul>
@@ -114,6 +125,18 @@ export default function Ingredient({ loaderData }: Route.ComponentProps) {
       </div>
       <Modal open={open} onClose={() => setOpen(false)} title="New ingredient">
         <IngredientForm onClose={() => setOpen(false)} method="post" />
+      </Modal>
+      <Modal
+        open={editOpen}
+        onClose={() => setEditOpen(false)}
+        title="Edit ingredient"
+      >
+        <IngredientForm
+          key={selectedIngredient?.id}
+          onClose={() => setEditOpen(false)}
+          method="patch"
+          ingredient={selectedIngredient}
+        />
       </Modal>
     </section>
   );
