@@ -121,8 +121,12 @@ export default function Ingredient({ loaderData }: Route.ComponentProps) {
         ) : (
           <p>No ingredients found.</p>
         )}
-        <Button onClick={() => setOpen(true)} variant="secondary">
-          <PlusIcon size={16} />
+        <Button
+          onClick={() => setOpen(true)}
+          variant="secondary"
+          icon={PlusIcon}
+        >
+          {/* <PlusIcon size={16} /> */}
           Add
         </Button>
       </div>

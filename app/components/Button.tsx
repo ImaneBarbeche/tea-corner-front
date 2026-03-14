@@ -36,7 +36,7 @@ export function Button({
   };
 
   const baseStyles =
-    "inline-flex items-center justify-center rounded-full font-medium transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer";
+    "inline-flex items-center justify-center gap-2.5 rounded-full font-medium transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer";
 
   const isIconOnly = !children && !!Icon;
 
