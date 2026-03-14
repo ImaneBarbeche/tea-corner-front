@@ -5,8 +5,8 @@ export function TeaHeader({ tea }: { tea: Tea }) {
   const showType = tea.name.toLowerCase() !== tea.type.toLowerCase();
   return (
     <header>
-      <h1>
-        <span className=" capitalize text-5xl text-[var(--tea-color)] text-transparent [-webkit-text-stroke:0.043rem_var(--color-primary-dark)] [text-shadow:0.12rem_0.12rem_var(--tea-color)]">
+      <h1 className="max-w-96">
+        <span className=" capitalize text-5xl hyphens-auto  text-[var(--tea-color)] text-transparent [-webkit-text-stroke:0.043rem_var(--color-primary-dark)] [text-shadow:0.12rem_0.12rem_var(--tea-color)]">
           {tea.name}
         </span>
       </h1>

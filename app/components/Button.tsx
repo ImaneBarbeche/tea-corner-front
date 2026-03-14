@@ -23,7 +23,8 @@ export function Button({
   const variants = {
     primary:
       "text-sm px-6 py-2.5 bg-primary-dark text-primary-light hover:bg-opacity-90",
-    secondary: "border-2 border-primary-dark text-primary-dark bg-transparent",
+    secondary:
+      "border-2 border-primary-dark text-secondary-dark bg-transparent",
     tertiary: "text-primary-dark bg-primary-beige",
     ghost: "bg-transparent text-primary-dark",
   };
@@ -41,7 +42,7 @@ export function Button({
 
   return (
     <button
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${isIconOnly ? "!px-2" : ""} ${className}`}
+      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${isIconOnly ? "!px-2.5" : ""} ${className}`}
       disabled={disabled}
       aria-disabled={disabled}
       {...props}
