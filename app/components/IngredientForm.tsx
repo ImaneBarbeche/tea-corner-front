@@ -29,7 +29,17 @@ export function IngredientForm({
   method,
   ingredient,
 }: IngredientFormProps) {
-  const [color, setColor] = useState(ingredient?.color ?? "#ffffff");
+  const [color, setColor] = useState(ingredient?.color || "#f4b088");
+  // const [color, setColor] = useState<string>(ingredient?.color ?? "#000000");
+  // const [color, setColor] = useState<string>("#000000");
+
+  // React.useEffect(() => {
+  //   if (ingredient && ingredient.color) {
+  //     setColor(ingredient.color);
+  //   }
+  // }, [ingredient]);
+
+  // const [color, setColor] = useState("");
   const iconComponents: Record<string, React.ComponentType> = {
     Leaf,
     Sprout,
@@ -100,7 +110,6 @@ export function IngredientForm({
           ? resData.message.join(", ")
           : resData.message || "Something went wrong on the server.";
         console.log(resData);
-        
 
         return {
           error: errorMessage,
@@ -142,28 +151,30 @@ export function IngredientForm({
           ))}
         </select>
       </div>
-      <label
-        className="flex px-4 py-2.5 bg-transparent text-primary-dark border-2 border-primary-dark rounded-full gap-4"
-      >
+      <label className="flex px-4 py-2.5 bg-transparent text-primary-dark border-2 border-primary-dark rounded-full gap-4 cursor-pointer">
         <span
           style={{ backgroundColor: color }}
           className="flex items-center rounded-full p-1 min-w-6 aspect-square"
         >
           <PaletteIcon />
         </span>
-        <p className="self-center">{color}</p>
-      <input
-        type="color"
-        name="color"
-        className="opcacity-0 inset-0 w-0 h-0"
-        onChange={(e) => setColor(e.target.value)}
-        value={color}
-      />
+        <p className="self-center tabular-nums">{color}</p>
+        <input
+          type="color"
+          name="color"
+          className="opacity-0 cursor-pointer"
+          onChange={(e) => {
+            setColor(e.currentTarget.value);
+          }}
+          value={color}
+        />
       </label>
-      <Button type="submit">Save</Button>
-      <Button type="button" variant="secondary" onClick={onClose}>
-        Cancel
-      </Button>
+      <div className="flex flex-col-reverse gap-4 w-full md:flex-row md:ml-auto md:w-fit">
+        <Button type="button" variant="secondary" onClick={onClose}>
+          Cancel
+        </Button>
+        <Button type="submit">Save</Button>
+      </div>
     </form>
   );
 }

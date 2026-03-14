@@ -35,6 +35,12 @@ export function Button({
     large: "px-8 py-3 text-base",
   };
 
+  const iconSizes = {
+    small: 14,
+    medium: 16,
+    large: 24,
+  };
+
   const baseStyles =
     "inline-flex items-center justify-center gap-2.5 rounded-full font-medium transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer";
 
@@ -49,7 +55,7 @@ export function Button({
     >
       {/* TODO: ICON & LINK */}
 
-      {Icon && <Icon size={16} className="" />}
+      {Icon && <Icon size={iconSizes[size]} className="" />}
 
       {children && <span>{children}</span>}
     </button>

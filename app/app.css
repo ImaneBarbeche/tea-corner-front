@@ -33,18 +33,20 @@
   --shadow-card: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-html,
-body {
-  @apply font-sans text-secondary-dark;
-}
+@layer base {
+  html,
+  body {
+    @apply font-sans text-secondary-dark;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-display;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
 }
 
 @keyframes steepAnimation {

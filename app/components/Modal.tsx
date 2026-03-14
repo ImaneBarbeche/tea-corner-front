@@ -1,8 +1,6 @@
-import React, {
-  useEffect,
-  useRef,
-} from "react";
+import React, { useEffect, useRef } from "react";
 import { X } from "lucide-react";
+import { Button } from "./Button";
 
 type ModalProps = {
   open: boolean;
@@ -11,8 +9,13 @@ type ModalProps = {
   children: React.ReactNode;
 };
 
-export function Modal({ open, onClose, title, children, ...props }: ModalProps) {
-
+export function Modal({
+  open,
+  onClose,
+  title,
+  children,
+  ...props
+}: ModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -28,14 +31,12 @@ export function Modal({ open, onClose, title, children, ...props }: ModalProps) 
       ref={ref}
       onClose={onClose}
       onClick={(e) => e.target === ref.current && onClose()}
-      className="rounded-3xl p-5 bg-secondary-beige shadow-card backdrop:backdrop-blur-2xl"
+      className="fixed inset-0 m-auto rounded-3xl p-5 bg-secondary-beige shadow-card backdrop:backdrop-blur-2xlNOT backdrop-blur-2xl backdrop:bg-transparent"
     >
-      <div className="flex flex-row gap-24">
-        <h2 className="text-xl font-sans">{title}</h2>
-        <button type="button" className="" onClick={onClose}>
-            <X size={24} strokeWidth={1.5} />
-        </button>
-        </div>
+      <div className="flex items-center justify-between">
+        <h3 className="text-xl font-sans">{title}</h3>
+        <Button icon={X} variant="ghost" size="large" onClick={onClose} />
+      </div>
       <div className="mt-5">{children}</div>
     </dialog>
   );
