@@ -1,7 +1,6 @@
 import type { Route } from "./+types/Tea";
 import { CONFIG } from "../../config";
 import { apiFetch } from "~/lib/api";
-import teaCup from "~/assets/images/tea-cup.png";
 
 import {
   formatBrewTime,
@@ -11,6 +10,8 @@ import {
 import { TeaInfoCol } from "~/components/TeaInfoCol";
 import type { Tea } from "~/types/tea";
 import { TeaTimer } from "~/components/TeaTimer";
+import { TeaTimerCup } from "~/components/TeaTimerCup";
+import { useState } from "react";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   try {
@@ -49,6 +50,8 @@ export default function Tea({ loaderData }: Route.ComponentProps) {
   if (!tea) {
     return <p>Tea not available.</p>;
   }
+
+  const [isSteeping, setIsSteeping] = useState(false);
   const color = getTeaColor(tea);
 
   return (
@@ -58,20 +61,8 @@ export default function Tea({ loaderData }: Route.ComponentProps) {
     >
       <TeaInfoCol tea={tea} />
       <div className="mt-8 md:mt-0 flex flex-col items-center gap-4">
-        <div
-          className="relative bg-
-          
-                after:content-['']  
-                after:absolute 
-                after:inset-0 
-                after:bg-[var(--tea-color)] 
-                after:mix-blend-hue 
-                after:pointer-events-none
-                after:z-20"
-        >
-          {/* <img src={teaCup} alt="a tea cup" className="max-w-72" /> */}
-        </div>
-        <TeaTimer seconds={tea.brewing_time} />
+        <TeaTimerCup isSteeping={isSteeping} brewingTime={tea.brewing_time} />
+        <TeaTimer seconds={tea.brewing_time} onStatusChange={setIsSteeping} />
       </div>
     </section>
   );

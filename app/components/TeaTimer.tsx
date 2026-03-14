@@ -3,7 +3,13 @@ import { formatBrewTime } from "~/lib/teaFormatters";
 import { Button } from "./Button";
 import { Minus, Plus } from "lucide-react";
 
-export const TeaTimer = ({ seconds }: { seconds: number }) => {
+export const TeaTimer = ({
+  seconds,
+  onStatusChange,
+}: {
+  seconds: number;
+  onStatusChange?: (active: boolean) => void;
+}) => {
   const [time, setTime] = useState(seconds * 1000);
   const [isActive, setIsActive] = useState(false);
   const [refTime, setRefTime] = useState(Date.now());
@@ -22,9 +28,19 @@ export const TeaTimer = ({ seconds }: { seconds: number }) => {
     return () => clearTimeout(timeout);
   }, [isActive, time, refTime]);
 
+  useEffect(() => {
+    if (time <= 0 && isActive) {
+      setIsActive(false);
+      onStatusChange?.(false); // Tell the cup to stop saturating
+    }
+  }, [time, isActive, onStatusChange]);
+
   const toggle = () => {
+    // creating this variable so as to not pass the old isActive state (e.g we would be passing "false" after clicking to start the timer, which is not what we want)
+    const nextState = !isActive;
+    setIsActive(nextState);
     setRefTime(Date.now());
-    setIsActive(!isActive);
+    onStatusChange?.(nextState);
   };
 
   return (
@@ -55,7 +71,7 @@ export const TeaTimer = ({ seconds }: { seconds: number }) => {
         className="!border-[var(--tea-color)]"
         onClick={toggle}
       >
-        {isActive ? "Pause" : "Start"}
+        {isActive ? "Pause" : "brew"}
       </Button>
       {/* 
       <Button

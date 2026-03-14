@@ -1,8 +1,4 @@
-import {
-  formatBrewTime,
-  formatLeafAmount,
-  getTeaColor,
-} from "~/lib/teaFormatters";
+import { formatBrewTime, formatLeafAmount } from "~/lib/teaFormatters";
 import type { Tea } from "~/types/tea";
 import { TeaHeader } from "./TeaHeader";
 import type { TeaIngredient } from "~/types/TeaIngredient";
@@ -10,7 +6,6 @@ import { Tag } from "./Tag";
 import { Droplet, Droplets, Leaf, Thermometer, Timer } from "lucide-react";
 
 export function TeaInfoCol({ tea }: { tea: Tea }) {
-  const color = getTeaColor(tea);
   return (
     <div className="flex flex-col gap-4 mb-auto">
       <TeaHeader tea={tea} />
