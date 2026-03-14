@@ -27,7 +27,10 @@ export function TeaCard({ tea }: { tea: Tea }) {
           </p>
         </div>
       </header>
-      <NavLink to={`tea/${tea.id}`} className="absolute inset-0 text-[0rem]">
+      <NavLink
+        to={`/app/tea/${tea.id}`}
+        className="absolute inset-0 text-[0rem]"
+      >
         view
       </NavLink>
     </article>

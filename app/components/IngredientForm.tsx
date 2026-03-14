@@ -30,16 +30,7 @@ export function IngredientForm({
   ingredient,
 }: IngredientFormProps) {
   const [color, setColor] = useState(ingredient?.color || "#f4b088");
-  // const [color, setColor] = useState<string>(ingredient?.color ?? "#000000");
-  // const [color, setColor] = useState<string>("#000000");
 
-  // React.useEffect(() => {
-  //   if (ingredient && ingredient.color) {
-  //     setColor(ingredient.color);
-  //   }
-  // }, [ingredient]);
-
-  // const [color, setColor] = useState("");
   const iconComponents: Record<string, React.ComponentType> = {
     Leaf,
     Sprout,
@@ -128,7 +119,7 @@ export function IngredientForm({
       className="flex 
           flex-col gap-4"
     >
-      {method}
+      {/* {method} */}
       <Input
         name="name"
         className=""
