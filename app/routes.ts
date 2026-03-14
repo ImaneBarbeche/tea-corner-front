@@ -18,5 +18,6 @@ export default [
     index("routes/app/Home.tsx"),
     route("tea/:teaId", "routes/app/Tea.tsx"),
     // route("settings", "routes/app/Settings.tsx"),
+    route("ingredient", "routes/app/Ingredient.tsx")
   ]),
 ] satisfies RouteConfig;

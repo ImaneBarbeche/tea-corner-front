@@ -1,4 +1,4 @@
-import React, {} from "react";
+import React from "react";
 import {
   Candy,
   CircleOff,
@@ -9,32 +9,37 @@ import {
   Sprout,
   type LucideIcon,
 } from "lucide-react";
+import {
+  INGREDIENT_TYPE_ICONS,
+  type IngredientType,
+} from "~/routes/app/enums/ingredientType.enum";
 
-const iconTag: Record<string, LucideIcon> = {
-  leaf: Leaf,
-  sprout: Sprout,
-  candy: Candy,
-  fruit: Citrus,
-  nut: Nut,
-  spice: PillBottle,
-  none: CircleOff,
+const lucideIcons: Record<string, LucideIcon> = {
+  Leaf,
+  Sprout,
+  Candy,
+  Citrus,
+  Nut,
+  PillBottle,
+  CircleOff,
 };
 
 type TagProps = {
   content: string;
-  icon?: string;
+  icon?: IngredientType;
   color?: string;
+  children?: React.ReactNode;
 };
 
-export function Tag({ content, icon, color, ...props }: TagProps) {
+export function Tag({ content, icon, color, children, ...props }: TagProps) {
   let Icon: LucideIcon | null = null;
 
   if (icon) {
-    Icon = iconTag[icon.toLowerCase()];
+    Icon = lucideIcons[INGREDIENT_TYPE_ICONS[icon]];
   }
 
   return (
-    <div className="flex bg-primary-beige p-1.5 gap-1.5 rounded-full w-fit">
+    <div className="flex items-center bg-primary-beige p-1.5 gap-1.5 rounded-full w-fit">
       <div
         className="flex items-center rounded-full p-1 bg-(--tag-color) min-w-6 aspect-square"
         style={
@@ -44,12 +49,16 @@ export function Tag({ content, icon, color, ...props }: TagProps) {
         }
       >
         {Icon && (
-          <Icon color="var(--color-primary-dark)" strokeWidth={1.5} size={16} opacity={0.5} />
+          <Icon
+            color="var(--color-primary-dark)"
+            strokeWidth={1.5}
+            size={16}
+            opacity={0.5}
+          />
         )}
       </div>
-      <p className="font-display">
-        {content}
-      </p>
+      <p className="font-display lowercase">{content}</p>
+      {children}
     </div>
   );
 }

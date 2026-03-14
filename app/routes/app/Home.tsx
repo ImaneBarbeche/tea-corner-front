@@ -2,7 +2,6 @@ import type { Route } from "./+types/Home";
 import { CONFIG } from "../../config";
 import type { Tea } from "~/types/tea";
 import { TeaCard } from "~/components/TeaCard";
-import { useState } from "react";
 
 export async function clientLoader() {
   try {
@@ -25,7 +24,6 @@ export async function clientLoader() {
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const [isOpen, setIsOpen] = useState(false);
 
   if (loaderData.error) {
     return <p>Error: {loaderData.error}</p>;

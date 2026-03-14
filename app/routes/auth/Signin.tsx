@@ -6,7 +6,6 @@ import {
   NavLink,
 } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
-// import { getCsrfToken } from "~/lib/csrf";
 import { CONFIG } from "../../config";
 import { Button } from "~/components/Button";
 import { Input } from "~/components/Input";
@@ -32,12 +31,6 @@ export async function clientAction({ request }: ActionFunctionArgs) {
         error: errorData.message || "Something went wrong on the server.",
       };
     }
-
-    // const { access_token } = await response.json();
-
-    // if (access_token) {
-    //   localStorage.setItem(CONFIG.TOKEN_KEY, access_token);
-    // }
 
     return redirect("/app/");
   } catch (err) {
