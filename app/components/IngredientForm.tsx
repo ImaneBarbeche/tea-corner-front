@@ -119,12 +119,12 @@ export function IngredientForm({
       className="flex 
           flex-col gap-4"
     >
-      {method}
       <Input
         name="name"
         className=""
         placeholder="Name"
         defaultValue={ingredient?.name}
+        required
       />
       <div className="flex px-4 py-2.5 bg-transparent text-primary-dark border-2 border-primary-dark rounded-full gap-4 items-center">
         <IconComponent />
