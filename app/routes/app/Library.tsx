@@ -94,6 +94,7 @@ export default function Library({ loaderData }: Route.ComponentProps) {
       </div>
       <Modal open={open} onClose={() => setOpen(false)} title="New tea">
         <TeaForm
+          key={open ? "new-tea-form" : "closed"}
           onClose={() => setOpen(false)}
           method="post"
           onRefresh={refresh}
