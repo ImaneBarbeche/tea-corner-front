@@ -12,12 +12,14 @@ interface DropdownMenuProps {
 
 export function DropdownMenu({ items }: DropdownMenuProps) {
   return (
-    <ul
-      className="dropdown menu w-52 rounded-box bg-base-100 shadow-sm absolute top-full right-0"
-    >
-       {items.map((item) => (
+    <ul className="absolute top-full z-10 mt-1 w-52 rounded-md bg-primary-light/80 ring-1 ring-black/5 py-1 shadow-card backdrop:backdrop-blur-2xl">
+      {items.map((item) => (
         <li key={item.label}>
-          <button type="button" onClick={item.onClick}>
+          <button
+            type="button"
+            onClick={item.onClick}
+            className="flex w-full items-center gap-2 px-4 py-2 text-sm text-secondary-dark"
+          >
             {item.icon}
             {item.label}
           </button>

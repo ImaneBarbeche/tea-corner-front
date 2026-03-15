@@ -82,7 +82,11 @@ export default function Library({ loaderData }: Route.ComponentProps) {
       <div className="flex flex-col gap-3">
         <div className="flex justify-between items-center">
           <h2 className="text-lg">Ingredients</h2>
-          <Button onClick={() => setOpen(true)} variant="secondary" icon={PlusIcon}>
+          <Button
+            onClick={() => setOpen(true)}
+            variant="secondary"
+            icon={PlusIcon}
+          >
             Add
           </Button>
         </div>
