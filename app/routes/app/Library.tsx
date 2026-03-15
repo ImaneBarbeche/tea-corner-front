@@ -7,6 +7,7 @@ import { Button } from "~/components/Button";
 import { useState } from "react";
 import { Modal } from "~/components/Modal";
 import { TeaForm } from "~/components/TeaForm";
+import { useRevalidator } from "react-router";
 
 export async function clientLoader() {
   try {
@@ -34,7 +35,11 @@ export async function clientLoader() {
 }
 
 export default function Library({ loaderData }: Route.ComponentProps) {
+  const revalidator = useRevalidator();
   const [open, setOpen] = useState(false);
+
+  // Function to refresh the list
+  const refresh = () => revalidator.revalidate();
 
   if (loaderData.error) {
     return <p>Error: {loaderData.error}</p>;
@@ -59,13 +64,17 @@ export default function Library({ loaderData }: Route.ComponentProps) {
           return (
             <div key={userTea.id}>
               <TeaCard tea={userTea.tea} />
-              <TeaForm method="patch" tea={userTea.tea} />
+              <TeaForm method="patch" tea={userTea.tea} onRefresh={refresh} />
             </div>
           );
         })}
       </div>
       <Modal open={open} onClose={() => setOpen(false)} title="New tea">
-        <TeaForm onClose={() => setOpen(false)} method="post" />
+        <TeaForm
+          onClose={() => setOpen(false)}
+          method="post"
+          onRefresh={refresh}
+        />
       </Modal>
     </section>
   );

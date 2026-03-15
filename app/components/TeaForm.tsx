@@ -8,11 +8,12 @@ import { CONFIG } from "~/config";
 
 interface TeaFormProps {
   onClose?: () => void;
+  onRefresh?: () => void;
   method: "post" | "patch";
   tea?: Tea | null;
 }
 
-export function TeaForm({ onClose, method, tea }: TeaFormProps) {
+export function TeaForm({ onClose, onRefresh, method, tea }: TeaFormProps) {
   const [selectedType, setSelectedType] = useState<TeaType>(
     tea?.type ?? TeaType.Green,
   );
@@ -81,7 +82,7 @@ export function TeaForm({ onClose, method, tea }: TeaFormProps) {
         });
       }
 
-      console.log("Tea created and added to library!");
+      onRefresh?.();
 
       onClose?.();
     } catch (err) {
@@ -110,88 +111,54 @@ export function TeaForm({ onClose, method, tea }: TeaFormProps) {
         />
       </label>
 
-      <label className="flex flex-col gap-2">
-        <span className="">Tea Category</span>
-        <div
-          className=""
-          style={{ borderColor: TEA_TYPE_COLORS[selectedType] }}
+      <label className="flex flex-col gap-2.5">
+        <span className="">Type</span>
+        <select
+          name="type"
+          value={selectedType}
+          onChange={(e) => setSelectedType(e.target.value as TeaType)}
+          className="px-4 py-2.5 bg-transparent text-primary-dark border-primary-dark border-2 outline-none rounded-full w-full"
         >
-          <div
-            className=""
-            style={{ backgroundColor: TEA_TYPE_COLORS[selectedType] }}
-          />
-          <select
-            name="type"
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value as TeaType)}
-            className=""
-          >
-            {Object.values(TeaType).map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-        </div>
-      </label>
-      <div className="flex flex-col gap-2">
-        <span className="">Caffeine Level</span>
-        <div className="flex">
-          {Object.values(caffeineLevel).map((level) => {
-            const isSelected = caffeine === level;
-            return (
-              <label key={level}>
-                <input
-                  type="radio"
-                  name="caffeine_level"
-                  value={level}
-                  checked={isSelected}
-                  onChange={(e) => setCaffeine(e.target.value as caffeineLevel)}
-                  className="sr-only" // Hidden but accessible
-                />
-                {level}
-              </label>
-            );
-          })}
-        </div>
-      </div>
-      <label>
-        <span>Source (Origin)</span>
-        <Input name="source" defaultValue={tea?.source ?? ""} />
+          {Object.values(TeaType).map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
       </label>
 
       {/* Brewing Stats */}
-      <div>
-        <label>
+      <div className="w-full grid grid-cols-2 gap-2.5">
+        <label className="flex flex-col gap-2.5">
           <span>Brewing Time (seconds)</span>
-          <input
+          <Input
             type="number"
             name="brewing_time"
             defaultValue={tea?.brewing_time ?? 120}
           />
         </label>
 
-        <label>
+        <label className="flex flex-col gap-2.5">
           <span>Temperature (°C)</span>
-          <input
+          <Input
             type="number"
             name="brewing_temperature"
             defaultValue={tea?.brewing_temperature ?? 80}
           />
         </label>
 
-        <label>
+        <label className="flex flex-col gap-2.5">
           <span>Leaf Amount (g)</span>
-          <input
+          <Input
             type="number"
             name="leaf_amount"
             defaultValue={tea?.leaf_amount ?? 5}
           />
         </label>
 
-        <label>
+        <label className="flex flex-col gap-2.5">
           <span>Water Amount (ml)</span>
-          <input
+          <Input
             type="number"
             name="water_amount"
             defaultValue={tea?.water_amount ?? 250}
@@ -199,14 +166,42 @@ export function TeaForm({ onClose, method, tea }: TeaFormProps) {
         </label>
       </div>
 
-      <label>
+      <label className="flex flex-col gap-2.5">
         <span>Instructions</span>
         <textarea
           name="instructions"
           defaultValue={tea?.instructions ?? ""}
           placeholder="Step by step guide..."
+          className="min-h-40 px-4 py-2.5 bg-transparent text-primary-dark border-2 border-primary-dark rounded-2xl resize-none  focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-1"
         />
       </label>
+
+      <div className="flex flex-col gap-2.5">
+        <span className="">Caffeine Level</span>
+        <div className="flex gap-2.5">
+          {Object.values(caffeineLevel).map((level) => {
+            const isSelected = caffeine === level;
+            return (
+              <label key={level} className="flex gap-2">
+                <input
+                  type="radio"
+                  name="caffeine_level"
+                  value={level}
+                  checked={isSelected}
+                  onChange={(e) => setCaffeine(e.target.value as caffeineLevel)}
+                  className="sr-onlyNOT accent-yellow-600" // Hidden but accessible
+                />
+                {level}
+              </label>
+            );
+          })}
+        </div>
+      </div>
+      <label className="flex flex-col gap-2.5">
+        <span>Source (Origin)</span>
+        <Input name="source" defaultValue={tea?.source ?? ""} />
+      </label>
+
       <label>
         <input
           type="checkbox"
