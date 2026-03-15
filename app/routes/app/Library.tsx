@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Modal } from "~/components/Modal";
 import { TeaForm } from "~/components/TeaForm";
 import { useRevalidator } from "react-router";
+import { DropDownButton } from "~/components/DropDownButton";
 
 export async function clientLoader() {
   try {
@@ -37,6 +38,8 @@ export async function clientLoader() {
 export default function Library({ loaderData }: Route.ComponentProps) {
   const revalidator = useRevalidator();
   const [open, setOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
+  const [selectedUserTea, setSelectedUserTea] = useState<UserTea | null>(null);
 
   // Function to refresh the list
   const refresh = () => revalidator.revalidate();
@@ -46,7 +49,7 @@ export default function Library({ loaderData }: Route.ComponentProps) {
   }
   return (
     <section className="w-full">
-      <header className="flex justify-between items-center">
+      <header className="flex justify-between items-center mb-4">
         <h2>Library</h2>
         <Button
           onClick={() => setOpen(true)}
@@ -64,7 +67,27 @@ export default function Library({ loaderData }: Route.ComponentProps) {
           return (
             <div key={userTea.id}>
               <TeaCard tea={userTea.tea} />
-              <TeaForm method="patch" tea={userTea.tea} onRefresh={refresh} />
+              <DropDownButton
+                className="p-1"
+                items={[
+                  {
+                    label: "Edit",
+                    onClick: () => {
+                      setSelectedUserTea(userTea);
+                      setEditOpen(true);
+                    },
+                  },
+                  // {
+                  //   label: "Delete",
+                  //   onClick: () =>
+                  //     submit(
+                  //       { intent: "delete", id: ingredient.id },
+                  //       { method: "delete" },
+                  //     ),
+                  // },
+                ]}
+              />
+              {/* <TeaForm method="patch" tea={userTea.tea} onRefresh={refresh} /> */}
             </div>
           );
         })}
@@ -74,6 +97,19 @@ export default function Library({ loaderData }: Route.ComponentProps) {
           onClose={() => setOpen(false)}
           method="post"
           onRefresh={refresh}
+        />
+      </Modal>
+      <Modal
+        open={editOpen}
+        onClose={() => setEditOpen(false)}
+        title="Edit ingredient"
+      >
+        <TeaForm
+          key={selectedUserTea?.id ?? "new"}
+          onClose={() => setEditOpen(false)}
+          method="patch"
+          onRefresh={refresh}
+          tea={selectedUserTea?.tea}
         />
       </Modal>
     </section>

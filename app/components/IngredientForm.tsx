@@ -119,7 +119,6 @@ export function IngredientForm({
       className="flex 
           flex-col gap-4"
     >
-      {/* {method} */}
       <Input
         name="name"
         className=""
