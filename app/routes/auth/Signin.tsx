@@ -3,6 +3,7 @@ import {
   redirect,
   useActionData,
   useNavigation,
+  useLocation,
   NavLink,
 } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
@@ -42,6 +43,8 @@ export default function Signin() {
   const actionData = useActionData();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
+  const location = useLocation();
+  const isVerified = new URLSearchParams(location.search).get("verified") === "true";
 
   return (
     <section className="md:flex md:h-screen md:overflow-hidden">
@@ -54,12 +57,17 @@ export default function Signin() {
         ></img>
       </picture>
       <section className="flex flex-col bg-white gap-4 px-11 py-8 shadow-xl rounded-4xl md:flex-1 md:items-center md:justify-center md:py-2.5 md:px-2.5 md:shadow-none">
+        {isVerified && (
+          <p className="bg-green-100 text-green-800 border border-green-300 rounded-lg px-4 py-3 text-sm">
+            Email verified! You can now sign in.
+          </p>
+        )}
         <Form method="post" className="flex flex-col gap-4 mt-4">
           <h1 className="text-center text-4xl md:text-left">Welcome Back</h1>
           <span className="text-center">Brew mindfully</span>
           <label className="flex flex-col gap-1">
             <span>Username</span>
-            <input
+            <Input
               name="user_name"
               type="text"
               required
@@ -69,7 +77,7 @@ export default function Signin() {
           </label>
           <label className="flex flex-col gap-1">
             <span>Password</span>
-            <input
+            <Input
               name="password"
               type="password"
               required
