@@ -31,7 +31,7 @@ export function Input({
 
   const baseStyles =
     // "inline-flex items-center justify-center rounded-full font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer";
-    "px-4 py-2.5 bg-transparent text-primary-dark border-2 border-primary-dark rounded-full";
+    "px-4 py-2.5 bg-transparent text-primary-dark border-2 border-primary-dark rounded-full  focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-1";
 
   return (
     <input

@@ -56,7 +56,12 @@ export default function Library({ loaderData }: Route.ComponentProps) {
           // If the relation is missing for some reason, don't crash
           if (!userTea.tea) return null;
 
-          return <TeaCard tea={userTea.tea} key={userTea.id} />;
+          return (
+            <div key={userTea.id}>
+              <TeaCard tea={userTea.tea} />
+              <TeaForm method="patch" tea={userTea.tea} />
+            </div>
+          );
         })}
       </div>
       <Modal open={open} onClose={() => setOpen(false)} title="New tea">
