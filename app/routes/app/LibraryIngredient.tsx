@@ -128,14 +128,13 @@ export default function LibraryIngredient({
         ) : (
           <p>No ingredients found.</p>
         )}
-        <Button
+        {/* <Button
           onClick={() => setOpen(true)}
           variant="secondary"
           icon={PlusIcon}
         >
-          {/* <PlusIcon size={16} /> */}
           Add
-        </Button>
+        </Button> */}
       </div>
       <Modal open={open} onClose={() => setOpen(false)} title="New ingredient">
         <IngredientForm onClose={() => setOpen(false)} method="post" />

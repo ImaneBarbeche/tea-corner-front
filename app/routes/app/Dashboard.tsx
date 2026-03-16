@@ -53,7 +53,7 @@ export default function Dashboard({ loaderData }: Route.ComponentProps) {
             {loaderData.users.map((user: User) => (
               <tr key={user.id}>
                 <td className="px-4 py-2">{user.display_name}</td>
-                <td className="px-4 py-2">@{user.user_name}</td>
+                <td className="px-4 py-2">{user.user_name}</td>
                 <td className="px-4 py-2">{user.email}</td>
                 <td className="px-4 py-2">{user.role}</td>
                 <td className="px-4 py-2">{user.status}</td>
