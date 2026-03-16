@@ -65,9 +65,16 @@ export default function Library({ loaderData }: Route.ComponentProps) {
           if (!userTea.tea) return null;
 
           return (
-            <div key={userTea.id}>
+            <div
+              key={userTea.id}
+              style={
+                { "--anchor-element": `--${userTea.id}` } as React.CSSProperties
+              }
+              className="[anchor-name:var(--anchor-element)] flex-1 md:max-w-64"
+            >
               <TeaCard tea={userTea.tea} />
               <DropDownButton
+                useAnchor={true}
                 className="p-1"
                 items={[
                   {
@@ -103,7 +110,7 @@ export default function Library({ loaderData }: Route.ComponentProps) {
       <Modal
         open={editOpen}
         onClose={() => setEditOpen(false)}
-        title="Edit ingredient"
+        title="Edit tea"
       >
         <TeaForm
           key={selectedUserTea?.id ?? "new"}
