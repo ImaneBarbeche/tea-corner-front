@@ -51,6 +51,11 @@ export function IngredientForm({
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
+
+    if (data.name.toString().length < 2) {
+      return setError("Name must be at least 2 characters"); 
+    }
+
     const requestMethod = method;
 
     if (requestMethod === "patch" && ingredient?.id) {
@@ -116,6 +121,7 @@ export function IngredientForm({
         placeholder="Name"
         defaultValue={ingredient?.name}
         required
+        minLength={2}
       />
       <div className="flex px-4 py-2.5 bg-transparent text-primary-dark border-2 border-primary-dark rounded-full gap-4 items-center">
         <IconComponent />
