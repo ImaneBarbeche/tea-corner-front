@@ -1,5 +1,6 @@
 import type { Route } from "./+types/EmailVerify";
 import { CONFIG } from "../../config";
+import { redirect } from "react-router";
 
 export async function clientLoader({ request }: Route.ClientLoaderArgs) {
   const token = new URL(request.url).searchParams.get("token");
@@ -23,11 +24,8 @@ export async function clientLoader({ request }: Route.ClientLoaderArgs) {
       return { error: message };
     }
 
-    const data = await res.json();
-
-    return {
-      message: data.message,
-    };
+    return redirect("/signin?verified=true")
+    
   } catch (err) {
     return { error: "Network error." };
   }
@@ -37,11 +35,4 @@ export default function EmailVerify({ loaderData }: Route.ComponentProps) {
   if (loaderData.error) {
     return <p>Error: {loaderData.error}</p>;
   }
-
-  const message = loaderData.message;
-  if (!message) {
-    return <p>Something didn't go as planned</p>;
-  }
-
-  return <p>{message}</p>;
 }

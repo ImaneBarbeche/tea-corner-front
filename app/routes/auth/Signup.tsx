@@ -9,6 +9,7 @@ import type { ActionFunctionArgs } from "react-router";
 import { CONFIG } from "../../config";
 import waveImage from "~/assets/images/homepage-waves.webp";
 import { Button } from "~/components/Button";
+import { Input } from "~/components/Input";
 
 export async function clientAction({ request }: ActionFunctionArgs) {
   let formData = await request.formData();
@@ -83,7 +84,7 @@ export default function Signup() {
           <span className="text-center">sign up and start brewing</span>
           <label className="flex flex-col gap-1">
             <span>Display name</span>
-            <input
+            <Input
               name="display_name"
               type="text"
               required
@@ -93,7 +94,7 @@ export default function Signup() {
           </label>
           <label className="flex flex-col gap-1">
             <span>User name</span>
-            <input
+            <Input
               name="user_name"
               type="text"
               required
@@ -103,7 +104,7 @@ export default function Signup() {
           </label>
           <label className="flex flex-col gap-1">
             <span>Email</span>
-            <input
+            <Input
               name="email"
               type="email"
               required
@@ -114,7 +115,7 @@ export default function Signup() {
           <div className="flex flex-row gap-3">
             <label className="flex flex-col gap-1">
               <span>Password</span>
-              <input
+              <Input
                 name="password"
                 type="password"
                 required
@@ -125,7 +126,7 @@ export default function Signup() {
             </label>
             <label htmlFor="" className="flex flex-col gap-1">
               <span>Confirm Password</span>
-              <input
+              <Input
                 type="password"
                 name="confirm_password"
                 required

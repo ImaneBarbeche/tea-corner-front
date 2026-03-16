@@ -1,4 +1,4 @@
-import type { Route } from "./+types/Ingredient";
+import type { Route } from "./+types/LibraryIngredient";
 import { CONFIG } from "../../config";
 import type { Ingredient } from "~/types/ingredient";
 import { Tag } from "~/components/Tag";
@@ -8,28 +8,25 @@ import { useState } from "react";
 import { Modal } from "~/components/Modal";
 import { IngredientForm } from "~/components/IngredientForm";
 import { DropDownButton } from "~/components/DropDownButton";
-import { Plus, PlusIcon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
+import { TeaCard } from "~/components/TeaCard";
+import type { UserTea } from "~/types/userTea";
 
 export async function clientLoader() {
   try {
-    const res = await fetch(`${CONFIG.API_URL}/ingredient/all`, {
-      headers: {
-        "Content-type": "application/json",
-      },
-      credentials: "include",
-    });
+    const [ingredientRes, teaRes] = await Promise.all([
+      fetch(`${CONFIG.API_URL}/ingredient/all`, { credentials: "include" }),
+      fetch(`${CONFIG.API_URL}/user-tea/library`, { credentials: "include" }),
+    ]);
 
-    if (res.status === 401) {
+    if (ingredientRes.status === 401 || teaRes.status === 401) {
       return { error: "Unauthorized" };
     }
 
-    const data = await res.json();
-    console.log(data);
+    const ingredients = await ingredientRes.json();
+    const teas = await teaRes.json();
 
-    return {
-      ingredients: data ? (data as Ingredient[]) : [],
-      error: null,
-    };
+    return { ingredients: ingredients ?? [], teas: teas ?? [], error: null };
   } catch (err) {
     return { error: "Network error." };
   }
@@ -61,15 +58,18 @@ export async function clientAction({ request }: ActionFunctionArgs) {
           error: errorMessage,
         };
       }
-      return redirect("/app/ingredient");
+      return redirect("/app/library");
     } catch (err) {
       // Handle network failures (server is down)
       return { error: "Network error." };
     }
   }
+  return null;
 }
 
-export default function Ingredient({ loaderData }: Route.ComponentProps) {
+export default function LibraryIngredient({
+  loaderData,
+}: Route.ComponentProps) {
   const [open, setOpen] = useState(false);
   const submit = useSubmit();
   const [editOpen, setEditOpen] = useState(false);
@@ -80,13 +80,20 @@ export default function Ingredient({ loaderData }: Route.ComponentProps) {
     return <p>Error: {loaderData.error}</p>;
   }
   return (
-    <section className="w-full">
-      <header>
-        <h2>Ingredient</h2>
-      </header>
-      <div className="flex justify-between items-center">
+    <section className="w-full flex flex-col gap-8">
+      <div className="flex flex-col gap-3">
+        <div className="flex justify-between items-center">
+          <h2 className="text-lg">Ingredients</h2>
+          <Button
+            onClick={() => setOpen(true)}
+            variant="secondary"
+            icon={PlusIcon}
+          >
+            Add
+          </Button>
+        </div>
         {loaderData.ingredients && loaderData.ingredients.length > 0 ? (
-          <ul className="flex gap-4 flex-wrap md:gap-8">
+          <ul className="flex gap-2 flex-wrap">
             {loaderData.ingredients.map((ingredient: Ingredient) => (
               <li key={ingredient.id}>
                 <Tag
@@ -145,6 +152,18 @@ export default function Ingredient({ loaderData }: Route.ComponentProps) {
           ingredient={selectedIngredient}
         />
       </Modal>
+      <div className="flex flex-col gap-3">
+        <h2 className="text-lg">Teas</h2>
+        {loaderData.teas && loaderData.teas.length > 0 ? (
+          <div className="flex gap-4 flex-wrap">
+            {loaderData.teas.map((userTea: UserTea) => (
+              <TeaCard tea={userTea.tea} key={userTea.id} />
+            ))}
+          </div>
+        ) : (
+          <p>No teas found.</p>
+        )}
+      </div>
     </section>
   );
 }

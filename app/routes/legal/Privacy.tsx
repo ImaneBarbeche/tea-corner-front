@@ -2,208 +2,187 @@ export default function Privacy() {
   return (
     <main className="max-w-2xl mx-auto px-8 py-12 flex flex-col gap-8">
       <div>
-        <h1 className="text-4xl">Politique de Confidentialité</h1>
+        <h1 className="text-4xl">Privacy Policy</h1>
         <time className="text-sm text-gray-500 mt-2 block">
-          Dernière mise à jour : 10 février 2026
+          Last updated: February 10, 2026
         </time>
         <p className="mt-4">
-          La présente Politique de Confidentialité explique comment{" "}
-          <strong>TeaCorner</strong> collecte, utilise, stocke et protège vos
-          données personnelles lorsque vous utilisez notre application. Nous
-          nous engageons à respecter le{" "}
-          <strong>
-            Règlement Général sur la Protection des Données (RGPD)
-          </strong>{" "}
-          et à garantir la transparence sur l'usage de vos informations.
+          This Privacy Policy explains how <strong>TeaCorner</strong> collects,
+          uses, stores, and protects your personal data when you use our
+          application. We are committed to complying with the{" "}
+          <strong>General Data Protection Regulation (GDPR)</strong> and to
+          ensuring transparency regarding the use of your information.
         </p>
       </div>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-semibold">
-          1. Données personnelles collectées
-        </h2>
+        <h2 className="text-xl font-semibold">1. Personal data collected</h2>
         <p>
-          Nous collectons uniquement les données strictement nécessaires au
-          fonctionnement de TeaCorner :
+          We only collect data strictly necessary for TeaCorner to function:
         </p>
-        <h3 className="font-medium">
-          Données fournies lors de la création de compte
-        </h3>
+        <h3 className="font-medium">Data provided during account creation</h3>
         <ul className="list-disc list-inside flex flex-col gap-1">
-          <li>Nom d'utilisateur</li>
-          <li>Adresse email</li>
-          <li>Mot de passe (haché et jamais stocké en clair)</li>
-          <li>Consentement à la politique de confidentialité</li>
+          <li>Username</li>
+          <li>Email address</li>
+          <li>Password (hashed and never stored in plain text)</li>
+          <li>Consent to the privacy policy</li>
         </ul>
-        <h3 className="font-medium">
-          Données générées par l'utilisation du service
-        </h3>
+        <h3 className="font-medium">Data generated through use of the service</h3>
         <ul className="list-disc list-inside flex flex-col gap-1">
-          <li>Préférences utilisateur (ex : thèmes, favoris)</li>
-          <li>
-            Historique d'utilisation (ex : recettes consultées, interactions)
-          </li>
+          <li>User preferences (e.g. themes, favorites)</li>
+          <li>Usage history (e.g. recipes viewed, interactions)</li>
         </ul>
-        <h3 className="font-medium">Données que nous NE collectons PAS</h3>
+        <h3 className="font-medium">Data we do NOT collect</h3>
         <ul className="list-disc list-inside flex flex-col gap-1">
-          <li>Données sensibles (santé, religion, opinions politiques…)</li>
-          <li>Données de localisation précise</li>
-          <li>Données bancaires</li>
-          <li>Cookies publicitaires</li>
+          <li>Sensitive data (health, religion, political opinions…)</li>
+          <li>Precise location data</li>
+          <li>Banking data</li>
+          <li>Advertising cookies</li>
         </ul>
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-semibold">2. Finalités du traitement</h2>
-        <p>Vos données sont utilisées uniquement pour :</p>
+        <h2 className="text-xl font-semibold">2. Purposes of processing</h2>
+        <p>Your data is used solely to:</p>
         <ul className="list-disc list-inside flex flex-col gap-1">
-          <li>Créer et gérer votre compte utilisateur</li>
-          <li>Assurer l'authentification et la sécurité</li>
-          <li>Vous permettre d'accéder aux fonctionnalités de TeaCorner</li>
-          <li>Améliorer l'expérience utilisateur</li>
+          <li>Create and manage your user account</li>
+          <li>Ensure authentication and security</li>
+          <li>Allow you to access TeaCorner's features</li>
+          <li>Improve the user experience</li>
           <li>
-            Vous envoyer des emails liés au fonctionnement du service (ex :
-            vérification d'email, sécurité)
+            Send you service-related emails (e.g. email verification, security)
           </li>
         </ul>
         <p>
-          Nous ne vendons <strong>jamais</strong> vos données.
+          We <strong>never</strong> sell your data.
         </p>
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-semibold">3. Base légale du traitement</h2>
-        <p>Nous traitons vos données sur les bases légales suivantes :</p>
+        <h2 className="text-xl font-semibold">3. Legal basis for processing</h2>
+        <p>We process your data on the following legal bases:</p>
         <ul className="list-disc list-inside flex flex-col gap-1">
           <li>
-            <strong>Exécution du contrat</strong> : création de compte, accès à
-            l'application
+            <strong>Contract performance</strong>: account creation, access to
+            the application
           </li>
           <li>
-            <strong>Consentement</strong> : acceptation de la politique de
-            confidentialité
+            <strong>Consent</strong>: acceptance of the privacy policy
           </li>
           <li>
-            <strong>Intérêt légitime</strong> : sécurité, prévention des abus
+            <strong>Legitimate interest</strong>: security, abuse prevention
           </li>
         </ul>
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-semibold">4. Durée de conservation</h2>
-        <p>Nous conservons vos données :</p>
+        <h2 className="text-xl font-semibold">4. Retention period</h2>
+        <p>We retain your data:</p>
         <ul className="list-disc list-inside flex flex-col gap-1">
-          <li>Tant que votre compte est actif</li>
+          <li>As long as your account is active</li>
           <li>
-            Jusqu'à <strong>2 ans</strong> d'inactivité
+            Up to <strong>2 years</strong> of inactivity
           </li>
-          <li>
-            Ou jusqu'à ce que vous demandiez la suppression de votre compte
-          </li>
+          <li>Or until you request deletion of your account</li>
         </ul>
         <p>
-          Les logs techniques sont conservés <strong>30 jours</strong> maximum.
+          Technical logs are retained for a maximum of{" "}
+          <strong>30 days</strong>.
         </p>
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-semibold">5. Sécurité des données</h2>
-        <p>Nous mettons en place des mesures de sécurité strictes :</p>
+        <h2 className="text-xl font-semibold">5. Data security</h2>
+        <p>We implement strict security measures:</p>
         <ul className="list-disc list-inside flex flex-col gap-1">
-          <li>Hachage des mots de passe (argon2)</li>
-          <li>Cookies sécurisés (httpOnly, SameSite)</li>
-          <li>Vérification d'email</li>
+          <li>Password hashing (argon2)</li>
+          <li>Secure cookies (httpOnly, SameSite)</li>
+          <li>Email verification</li>
           <li>
-            Protection contre les attaques (CSRF, rate limiting, validation des
-            données)
+            Protection against attacks (CSRF, rate limiting, data validation)
           </li>
-          <li>Accès restreint aux données</li>
+          <li>Restricted data access</li>
         </ul>
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-semibold">6. Partage des données</h2>
+        <h2 className="text-xl font-semibold">6. Data sharing</h2>
         <p>
-          Nous ne partageons vos données <strong>avec aucun tiers</strong>, sauf
-          :
+          We do not share your data <strong>with any third party</strong>,
+          except:
         </p>
         <ul className="list-disc list-inside flex flex-col gap-1">
-          <li>
-            Fournisseurs techniques indispensables (ex : service d'envoi
-            d'email)
-          </li>
-          <li>Obligations légales (rare et encadré)</li>
+          <li>Essential technical providers (e.g. email delivery service)</li>
+          <li>Legal obligations (rare and regulated)</li>
         </ul>
-        <p>Ces partenaires respectent eux aussi le RGPD.</p>
+        <p>These partners also comply with the GDPR.</p>
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-semibold">7. Vos droits (RGPD)</h2>
-        <p>Vous disposez des droits suivants :</p>
+        <h2 className="text-xl font-semibold">7. Your rights (GDPR)</h2>
+        <p>You have the following rights:</p>
         <div className="flex flex-col gap-2">
           <div>
-            <h3 className="font-medium">Droit d'accès</h3>
-            <p>Obtenir une copie de vos données.</p>
+            <h3 className="font-medium">Right of access</h3>
+            <p>Obtain a copy of your data.</p>
           </div>
           <div>
-            <h3 className="font-medium">Droit de rectification</h3>
-            <p>Modifier vos informations personnelles.</p>
+            <h3 className="font-medium">Right of rectification</h3>
+            <p>Modify your personal information.</p>
           </div>
           <div>
-            <h3 className="font-medium">
-              Droit à l'effacement ("droit à l'oubli")
-            </h3>
-            <p>Supprimer votre compte et toutes vos données.</p>
+            <h3 className="font-medium">Right to erasure ("right to be forgotten")</h3>
+            <p>Delete your account and all your data.</p>
           </div>
           <div>
-            <h3 className="font-medium">Droit à la portabilité</h3>
-            <p>Télécharger vos données dans un format lisible.</p>
+            <h3 className="font-medium">Right to data portability</h3>
+            <p>Download your data in a readable format.</p>
           </div>
           <div>
-            <h3 className="font-medium">Droit d'opposition</h3>
-            <p>Vous opposer à certains traitements.</p>
+            <h3 className="font-medium">Right to object</h3>
+            <p>Object to certain types of processing.</p>
           </div>
           <div>
-            <h3 className="font-medium">Droit de retirer votre consentement</h3>
-            <p>À tout moment, sans justification.</p>
+            <h3 className="font-medium">Right to withdraw consent</h3>
+            <p>At any time, without justification.</p>
           </div>
         </div>
         <p>
-          Pour exercer vos droits, vous pouvez utiliser les fonctionnalités
-          intégrées dans l'application ou nous contacter.
+          To exercise your rights, you can use the built-in features in the
+          application or contact us.
         </p>
       </section>
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-semibold">8. Cookies</h2>
         <p>
-          TeaCorner utilise uniquement des <strong>cookies techniques</strong>{" "}
-          nécessaires au fonctionnement du service (authentification).
+          TeaCorner uses only <strong>technical cookies</strong> necessary for
+          the service to function (authentication).
         </p>
         <p>
-          Nous n'utilisons <strong>pas</strong> :
+          We do <strong>not</strong> use:
         </p>
         <ul className="list-disc list-inside flex flex-col gap-1">
-          <li>de cookies publicitaires</li>
-          <li>de cookies de tracking</li>
-          <li>de cookies analytiques sans consentement</li>
+          <li>Advertising cookies</li>
+          <li>Tracking cookies</li>
+          <li>Analytics cookies without consent</li>
         </ul>
-        <p>Aucun bandeau cookies n'est requis dans ce cas.</p>
+        <p>No cookie banner is required in this case.</p>
       </section>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-semibold">9. Suppression du compte</h2>
+        <h2 className="text-xl font-semibold">9. Account deletion</h2>
         <p>
-          Vous pouvez supprimer votre compte à tout moment depuis votre espace
-          utilisateur. Toutes vos données seront définitivement supprimées dans
-          un délai maximum de <strong>30 jours</strong>.
+          You can delete your account at any time from your user space. All
+          your data will be permanently deleted within a maximum of{" "}
+          <strong>30 days</strong>.
         </p>
       </section>
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-semibold">10. Contact</h2>
         <p>
-          Pour toute question concernant la protection de vos données :{" "}
+          For any questions regarding the protection of your data:{" "}
           contact@teacorner.com
         </p>
       </section>
