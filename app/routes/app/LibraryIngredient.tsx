@@ -1,4 +1,4 @@
-import type { Route } from "./+types/Library";
+import type { Route } from "./+types/LibraryIngredient";
 import { CONFIG } from "../../config";
 import type { Ingredient } from "~/types/ingredient";
 import { Tag } from "~/components/Tag";
@@ -67,7 +67,7 @@ export async function clientAction({ request }: ActionFunctionArgs) {
   return null;
 }
 
-export default function Library({ loaderData }: Route.ComponentProps) {
+export default function LibraryIngredient({ loaderData }: Route.ComponentProps) {
   const [open, setOpen] = useState(false);
   const submit = useSubmit();
   const [editOpen, setEditOpen] = useState(false);
