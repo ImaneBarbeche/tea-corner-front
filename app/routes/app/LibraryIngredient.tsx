@@ -58,7 +58,7 @@ export async function clientAction({ request }: ActionFunctionArgs) {
           error: errorMessage,
         };
       }
-      return redirect("/app/library");
+      return redirect("/app/libraryingredient");
     } catch (err) {
       // Handle network failures (server is down)
       return { error: "Network error." };
