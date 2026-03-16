@@ -30,6 +30,7 @@ export function IngredientForm({
   ingredient,
 }: IngredientFormProps) {
   const [color, setColor] = useState(ingredient?.color || "#f4b088");
+  const [error, setError] = useState<string | null>(null);
 
   const iconComponents: Record<string, React.ComponentType> = {
     Leaf,
@@ -68,21 +69,16 @@ export function IngredientForm({
         );
         const resData = await response.json().catch(() => ({}));
         if (!response.ok) {
-          // Handle both single errors and arrays of errors
           const errorMessage = Array.isArray(resData.message)
             ? resData.message.join(", ")
             : resData.message || "Something went wrong on the server.";
-          console.log(resData);
-
-          return {
-            error: errorMessage,
-          };
+          setError(errorMessage);
+          return;
         }
         onClose?.();
         return;
       } catch (err) {
-        // Handle network failures (server is down)
-        return { error: "Network error." };
+        setError("Network error.");
       }
     }
     try {
@@ -96,20 +92,15 @@ export function IngredientForm({
       });
       const resData = await response.json().catch(() => ({}));
       if (!response.ok) {
-        // Handle both single errors and arrays of errors
         const errorMessage = Array.isArray(resData.message)
           ? resData.message.join(", ")
           : resData.message || "Something went wrong on the server.";
-        console.log(resData);
-
-        return {
-          error: errorMessage,
-        };
+        setError(errorMessage);
+        return;
       }
       onClose?.();
     } catch (err) {
-      // Handle network failures (server is down)
-      return { error: "Network error." };
+      setError("Network error.");
     }
   };
 
@@ -160,6 +151,7 @@ export function IngredientForm({
           value={color}
         />
       </label>
+      {error && <p className="text-red-500 text-sm">{error}</p>}
       <div className="flex flex-col-reverse gap-4 w-full md:flex-row md:ml-auto md:w-fit">
         <Button type="button" variant="secondary" onClick={onClose}>
           Cancel
