@@ -47,50 +47,53 @@ const features = [
   { label: "brew logs", color: "#C4864A" },
   { label: "community", color: "#E8B84B" },
   { label: "stats", color: "#9B8BB4" },
-  { label: "mindfulness", color: "#DDDD" },
+  { label: "mindfulness", color: "#9DD6E2" },
 ];
 
 export function Welcome() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-6 py-16 relative overflow-hidden"
-      style={{ background: "#F5F0E8", fontFamily: "'DM Serif Display', Georgia, serif" }}>
-
+    <main className="bg-primary-beige font-sans min-h-screen flex flex-col items-center justify-center px-6 py-16 relative overflow-hidden">
       <div className="relative z-10 flex flex-col items-center gap-7 text-center max-w-xl">
-
         <span className="text-xs font-display uppercase rounded-full px-4 py-1">
           Website is still brewing...
         </span>
 
-        <h1 className="text-5xl leading-tight" style={{ color: "#2C2A1E", fontWeight: 400 }}>
-          Your <em style={{ color: "#6B8C6E", fontStyle: "italic" }}>Tea Corner</em><br />
-          will be coming soon
+        <h1 className="text-5xl leading-tight text-secondary-dark font-normal">
+          Your Tea Corner will be coming soon
         </h1>
         {/* Video */}
         <div className="flex gap-2 w-full">
-        <video autoPlay loop muted playsInline className="w-full">
-              <source src={teaserVideo} type="video/mp4" />
-            </video>
+          <video autoPlay loop muted playsInline className="w-full">
+            <source src={teaserVideo} type="video/mp4" />
+          </video>
         </div>
 
-        {/* Pills features */}
-        <div className="flex flex-wrap gap-2 justify-center" style={{ fontFamily: "sans-serif" }}>
-          {features.map(f => (
-            <span key={f.label} className="flex items-center gap-2 text-sm rounded-full px-3 py-1.5"
-              style={{ background: "#FDF9F3", border: "0.5px solid #DDD5C4", color: "#5C5347" }}>
-              <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: f.color }} />
+        Pills features
+        <div className="flex flex-wrap gap-2 justify-center font-sans">
+          {features.map((f) => (
+            <span
+              key={f.label}
+              className="flex items-center gap-2 text-sm rounded-full px-3 py-1.5 bg-primary-light border-secondary-dark"
+            >
+              <span
+                className="w-2 h-2 rounded-full shrink-0"
+                style={{ background: f.color }}
+              />
               {f.label}
             </span>
           ))}
         </div>
 
         {/* Discord */}
-        <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer"
-          className="flex items-center gap-3 text-white rounded-xl px-6 py-3 text-sm font-medium transition-colors"
-          style={{ background: "#5865F2", fontFamily: "sans-serif" }}>
+        <a
+          href={DISCORD_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 text-primary-light rounded-xl px-6 py-3 text-sm font-medium transition-colors bg-blue-500 font-sans"
+        >
           <Bot />
           Join our discord channel
         </a>
-
       </div>
     </main>
   );
