@@ -3,6 +3,7 @@
 @font-face {
   font-family: "Alice";
   src: url(/Alice/Alice-Regular.ttf);
+  font-display: swap;
 }
 
 @font-face {
@@ -10,6 +11,7 @@
   src: url(/Inter/Inter-VariableFont_opsz,wght.ttf) format("truetype");
   font-weight: 100 900;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -17,6 +19,7 @@
   src: url(/Inter/Inter-Italic-VariableFont_opsz,wght.ttf) format("truetype");
   font-weight: 100 900;
   font-style: italic;
+  font-display: swap;
 }
 
 @theme {

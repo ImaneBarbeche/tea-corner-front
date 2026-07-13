@@ -63,7 +63,7 @@ export function Welcome() {
         </h1>
         {/* Video */}
         <div className="flex gap-2 w-full">
-          <video autoPlay loop muted playsInline className="w-full rounded-xl shadow-card">
+          <video autoPlay loop muted playsInline className="w-full rounded-xl shadow-card aspect-576/409" width="576" height="409">
             <source src={teaserVideo} type="video/mp4" />
           </video>
         </div>
@@ -89,7 +89,7 @@ export function Welcome() {
           href={DISCORD_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-3 text-primary-light rounded-xl px-6 py-3 text-sm font-medium transition-colors bg-blue-500 font-sans"
+          className="flex items-center gap-3 text-primary-light rounded-xl px-6 py-3 text-sm font-medium transition-colors bg-[#5865f2] font-sans"
         >
           <Bot />
           Join our discord channel
