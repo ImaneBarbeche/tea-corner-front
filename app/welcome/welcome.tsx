@@ -63,12 +63,12 @@ export function Welcome() {
         </h1>
         {/* Video */}
         <div className="flex gap-2 w-full">
-          <video autoPlay loop muted playsInline className="w-full">
+          <video autoPlay loop muted playsInline className="w-full rounded-xl shadow-card">
             <source src={teaserVideo} type="video/mp4" />
           </video>
         </div>
 
-        Pills features
+        {/* Pills features */}
         <div className="flex flex-wrap gap-2 justify-center font-sans">
           {features.map((f) => (
             <span
